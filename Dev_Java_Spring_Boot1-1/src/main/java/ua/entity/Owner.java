@@ -18,6 +18,7 @@ public class Owner extends AbstractEntityName{
 	private int count;
 	
 	private String address;
+	
 	@OneToMany(mappedBy="owner")
 	private List<Cargo> cargos = new ArrayList<>();
 	

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,17 +51,18 @@
 <div class="container">
 <div class="row">
 			<div class="col-12">
-				<form action="/admin/city" method="POST">
+				<form:form action="/admin/city" method="POST" modelAttribute="city">
 					<div class="form-group row">
 						<label class="col-1 col-form-label">Name:</label>
 						<div class="col-9">
-							<input name="name" class="form-control">
+							<form:input path="name" class="form-control"/>
 						</div>
 						<div class="col-2 offset-sm-2">
         					<button type="submit" class="btn btn-outline-success">Save</button>
+        					<a href="/admin/city/cancel" class="btn btn-outline-warning ">Cancel</a>
       					</div>
 					</div>
-				</form>
+				</form:form>
 			</div>
 		</div>
 		<div class="row">

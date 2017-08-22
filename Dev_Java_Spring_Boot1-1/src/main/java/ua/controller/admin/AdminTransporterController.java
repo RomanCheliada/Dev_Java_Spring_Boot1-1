@@ -1,5 +1,6 @@
 package ua.controller.admin;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +15,14 @@ public class AdminTransporterController {
 	
 	private final TransporterService service;
 
+	@Autowired
 	public AdminTransporterController(TransporterService service) {
 		this.service = service;
 	}
 	
 	@GetMapping
 	public String show(Model model){
-		model.addAttribute("transporters", service.findAll());
+		
 		return "transporter";
 	}
 	

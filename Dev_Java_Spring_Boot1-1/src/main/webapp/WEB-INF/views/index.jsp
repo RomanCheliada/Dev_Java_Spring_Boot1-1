@@ -30,7 +30,9 @@
      
     </ul>
     <span class="navbar-text">
-      user@gmail.com
+    <a href="/registration">Register</a>
+    <a>or</a>
+    <a href="/signIn">Sign in</a>
     </span>
   </div>
   
