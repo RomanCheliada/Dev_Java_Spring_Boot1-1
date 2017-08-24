@@ -7,9 +7,9 @@ import ua.entity.Owner;
 import ua.repository.OwnerRepository;
 import ua.service.OwnerService;
 @Service
-public class OwnerServiceImol extends CrudServiceImpl<Owner, Integer> implements OwnerService{
+public class OwnerServiceImpl extends CrudServiceImpl<Owner, Integer> implements OwnerService{
 @Autowired
-	public OwnerServiceImol(OwnerRepository repository) {
+	public OwnerServiceImpl(OwnerRepository repository) {
 		super(repository);
 	}
 

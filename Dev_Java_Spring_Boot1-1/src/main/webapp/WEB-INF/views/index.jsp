@@ -30,9 +30,9 @@
      
     </ul>
     <span class="navbar-text">
-    <a href="/registration">Register</a>
+    <a href="/registration">Sign up</a>
     <a>or</a>
-    <a href="/signIn">Sign in</a>
+    <a href="/signIn">Log in</a>
     </span>
   </div>
   
