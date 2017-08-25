@@ -2,17 +2,34 @@ package ua.model.request;
 
 public class OwnerRequest {
 	
-private String email;
+	private String email;
 	
-	private Integer id;
+	private String password;
+	
+	private String repeatPassword;
 	
 	private String name;
 	
 	private String phone;
 	
-	private String count;
-	
 	private String address;
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
 
 	public String getEmail() {
 		return email;
@@ -22,13 +39,6 @@ private String email;
 		this.email = email;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -46,13 +56,6 @@ private String email;
 		this.phone = phone;
 	}
 
-	public String getCount() {
-		return count;
-	}
-
-	public void setCount(String count) {
-		this.count = count;
-	}
 
 	public String getAddress() {
 		return address;

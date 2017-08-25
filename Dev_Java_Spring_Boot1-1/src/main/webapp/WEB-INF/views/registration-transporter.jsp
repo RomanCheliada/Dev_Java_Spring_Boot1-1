@@ -39,6 +39,26 @@
 						</div>
 					</div>
 					<div class="form-group row">
+						<label class="col-form-label col-2 text-center" for="email">Email:</label>
+						<div class="col-10">
+							<form:input path="email" id="email" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-2 text-center" for="password">Password:</label>
+						<div class="col-10">
+							<form:password path="password" id="password" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-2 text-center" for="repeatpassword">Repeat
+							password:</label>
+						<div class="col-10">
+							<form:password path="repeatPassword" id="repeatpassword"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="form-group row">
 						<label class="col-2 col-form-label text-center">Name:</label>
 						<div class="col-10">
 							<form:input path="name" class="form-control" />
@@ -54,16 +74,6 @@
 						<label class="col-2 col-form-label text-center">Phone:</label>
 						<div class="col-10">
 							<form:input path="phone" class="form-control" placeholder="(012)-34-56-789"/>
-						</div>
-
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label text-center">Brand:</label>
-						<div class="col-10">
-							<form:select path="brand" class="form-control">
-								<form:option value="NONE">Select</form:option>
-								<form:options items="${brands}"></form:options>
-							</form:select>
 						</div>
 
 					</div>

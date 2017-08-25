@@ -32,7 +32,7 @@
     <span class="navbar-text">
     <a href="/registration">Sign up</a>
     <a>or</a>
-    <a href="/signIn">Log in</a>
+    <a href="/login">Log in</a>
     </span>
   </div>
   

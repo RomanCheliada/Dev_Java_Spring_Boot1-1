@@ -16,10 +16,6 @@ public class TransporterServiceImpl implements TransporterService {
 		this.repository = repository;
 	}
 
-	@Override
-	public List<String> findAllBrands() {
-		return repository.findAllBrands();
-	}
 
 	@Override
 	public List<String> findAllModels() {

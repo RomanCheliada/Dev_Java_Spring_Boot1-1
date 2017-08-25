@@ -21,7 +21,7 @@
 			<ul class="navbar-nav mr-auto">
 
 			</ul>
-			<span class="navbar-text"> <a href="/signIn">Sign in</a>
+			<span class="navbar-text"> <a href="/login">Sign in</a>
 			</span>
 		</div>
 
@@ -39,28 +39,49 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-1 col-form-label">Name:</label>
-						<div class="col-11">
+						<label class="col-form-label col-2 text-center" for="email">Email:</label>
+						<div class="col-10">
+							<form:input path="email" id="email" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-2 text-center" for="password">Password:</label>
+						<div class="col-10">
+							<form:password path="password" id="password" class="form-control" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-2 text-center" for="repeatpassword">Repeat
+							password:</label>
+						<div class="col-10">
+							<form:password path="repeatPassword" id="repeatpassword"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label text-center">Name:</label>
+						<div class="col-10">
 							<form:input path="name" class="form-control" />
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-1 col-form-label">Phone:</label>
-						<div class="col-11">
+						<label class="col-2 col-form-label text-center">Phone:</label>
+						<div class="col-10">
 							<form:input path="phone" class="form-control"
 								placeholder="(012)-34-56-789" />
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-1 col-form-label">Address:</label>
-						<div class="col-11">
+						<label class="col-2 col-form-label text-center">Address:</label>
+						<div class="col-10">
 							<form:input path="address" class="form-control" />
 						</div>
 
 					</div>
 					<div class="form-group row">
 						<div class="col-12 offset-sm-12">
-							<button type="submit" class="btn btn-primary btn-block btn-outline-success">Register</button>
+							<button type="submit"
+								class="btn btn-primary btn-block btn-outline-success">Register</button>
 						</div>
 					</div>
 				</form:form>
