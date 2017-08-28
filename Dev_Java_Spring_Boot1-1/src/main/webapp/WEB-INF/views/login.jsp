@@ -29,34 +29,39 @@
 <body>
 	<div class="container">
 		<div class="row">
-		<div class=" col-12 ">
-			<form:form action="/login" method="POST">
-				<div class="form-group row">
-					<label class="form-col-label col-2 text-center" for="email">Email:</label>
-					<div class="col-10">
-						<input name="login" id="email" class="form-control" />
+			<div class=" col-12 ">
+				<c:if test="${param.fail}">
+	 			<div class="col-12 text-center" style="color:red;">
+	 				Fail to authorize. Try again
+	  			</div>
+	  			</c:if>
+				<form:form action="/login" method="POST">
+					<div class="form-group row">
+						<label class="form-col-label col-2 text-center" for="email">Email:</label>
+						<div class="col-10">
+							<input name="login" id="email" class="form-control" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group row">
-					<label class="form-col-label col-2 text-center" for="password">Password:</label>
-					<div class="col-10">
-						<input type="password" name="password" id="password"
-							class="form-control" />
+					<div class="form-group row">
+						<label class="form-col-label col-2 text-center" for="password">Password:</label>
+						<div class="col-10">
+							<input type="password" name="password" id="password"
+								class="form-control" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group row">
-					<div class="col-10">
-						<label><input type="checkbox" name="rememberMe">
-							Remember me</label>
+					<div class="form-group row">
+						<div class="col-10">
+							<label><input type="checkbox" name="rememberMe">
+								Remember me</label>
+						</div>
 					</div>
-				</div>
-				<div class="form-group row">
-					<div class="col-12 ml-auto">
-						<button type="submit"
-								class="btn btn-primary btn-block btn-outline-success">Log in</button>
+					<div class="form-group row">
+						<div class="col-12 ml-auto">
+							<button type="submit"
+									class="btn btn-primary btn-block btn-outline-success">Log in</button>
+						</div>
 					</div>
-				</div>
-			</form:form>
+				</form:form>
 			</div>
 		</div>
 	</div>

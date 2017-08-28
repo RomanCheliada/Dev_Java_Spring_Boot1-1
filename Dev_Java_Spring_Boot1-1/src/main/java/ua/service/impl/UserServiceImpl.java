@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
 		owner.setAddress(request.getAddress());
 		owner.setName(request.getName());
 		owner.setPhone(request.getPhone());
+		owner.setUser(user);
 		user.setOwner(owner);
 		repository.save(user);
 	}

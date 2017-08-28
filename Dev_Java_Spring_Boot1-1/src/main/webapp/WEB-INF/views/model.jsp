@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,8 +44,19 @@
         <a class="nav-link" href="/admin/transporter">Transporter</a>
       </li>
     </ul>
+      <span class="navbar-text">
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
+    	<form:form >
+ 			<a href="/" class="btn btn-outline-info btn-sm">User</a>
+ 		</form:form>
+    </sec:authorize>
+    </span>
     <span class="navbar-text">
-      admin@gmail.com
+    <sec:authorize access="isAuthenticated()">
+    	<form:form action="/logout">
+ 			<button class="btn btn-outline-info btn-sm">Log out</button>
+ 		</form:form>
+    </sec:authorize>
     </span>
   </div>
 </nav>
@@ -53,15 +65,26 @@
 			<div class="col-12">
 				<form:form action="/admin/model" method="POST" modelAttribute="model">
 					<div class="form-group row">
-						<label class="col-1 col-form-label">Name:</label>
-						<div class="col-9">
+						<label class="col-2 col-form-label">Name:</label>
+						<div class="col-10">
 							<form:input path="name" class="form-control"/>
 						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Brand:</label>
+						<div class="col-10">
+							<form:select path="brand" class="form-control">
+								<form:option value="">Select</form:option>
+								<form:options items="${brands}"></form:options>
+							</form:select>
+						</div>
+					</div>
+					<div class="form-group row">
 						<div class="col-2 offset-sm-2">
         					<button type="submit" class="btn btn-outline-success">Save</button>
         					<a href="/admin/model/cancel" class="btn btn-outline-warning ">Cancel</a>
       					</div>
-					</div>
+      					</div>
 				</form:form>
 			</div>
 		</div>
@@ -70,11 +93,13 @@
 				<table class="table table-bordered">
 					<tr>
 						<th class="text-center">Name</th>
+						<th class="text-center">Brand</th>
 						<th class="text-center">Options</th>
 					</tr>
 					<c:forEach var="model" items="${models}">
 						<tr>
 							<td>${model.name}</td>
+							<td>${model.brand}</td>
 							<td class="text-center">
 								<a href="/admin/model/update/${model.id}" class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/model/delete/${model.id}" class="btn btn-outline-danger btn-sm">Delete</a>

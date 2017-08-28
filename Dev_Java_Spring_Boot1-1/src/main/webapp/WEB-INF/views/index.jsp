@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,16 +26,35 @@
       <li class="nav-item">
         <a class="nav-link" href="/transporters">Transporters</a>
       </li>
+      <sec:authorize access="isAuthenticated()" >
       <li class="nav-item">
         <a class="nav-link" href="/add-order">Add order</a>
       </li>
+      </sec:authorize>
+      <sec:authorize access="isAnonymous()" >
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Add order</a>
+      </li>
+      </sec:authorize>
      
     </ul>
+    <sec:authorize access="isAnonymous()">
     <span class="navbar-text">
-    <a href="/registration">Sign up</a>
+    <a href="/registration" class="btn btn-outline-info btn-sm">Sign up</a>
     <a>or</a>
-    <a href="/login">Log in</a>
+    <a href="/login" class="btn btn-outline-info btn-sm">Log in</a>
     </span>
+    </sec:authorize>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+    	<form:form >
+ 			<a href="/admin" class="btn btn-outline-info btn-sm">Admin</a>
+ 		</form:form>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+    	<form:form action="/logout">
+ 			<button class="btn btn-outline-info btn-sm">Log out</button>
+ 		</form:form>
+    </sec:authorize>
   </div>
   
   
@@ -41,7 +62,6 @@
 <h2 class="text-center">Add your order now!</h2>
 <a href="/add-order" class="btn btn-outline-success text-center btn-block btn-lg">Add order</a>
 	<h2>${message}</h2>
-	<a href="/admin" class="btn btn-outline-dark">Admin</a>
 	
 </body>
 </html>

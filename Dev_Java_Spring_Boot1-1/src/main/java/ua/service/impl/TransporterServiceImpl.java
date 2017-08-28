@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import ua.model.view.TransporterView;
 import ua.repository.TransporterRepository;
 import ua.service.TransporterService;
 
 @Service
 public class TransporterServiceImpl implements TransporterService {
+	
+
 
 	private final TransporterRepository repository;
 
@@ -25,6 +28,13 @@ public class TransporterServiceImpl implements TransporterService {
 	@Override
 	public void delete(Integer id) {
 		repository.delete(id);	}
+
+
+	@Override
+	public List<TransporterView> findAllView() {
+		return repository.findAllView();
+	}
+
 
 	
 

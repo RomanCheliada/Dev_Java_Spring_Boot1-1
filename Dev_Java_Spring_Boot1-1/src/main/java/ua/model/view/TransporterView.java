@@ -1,6 +1,10 @@
 package ua.model.view;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import ua.entity.Status;
 
 public class TransporterView {
 
@@ -33,6 +37,26 @@ public class TransporterView {
 	private String dateArrive;
 	
 	private String status;
+	
+	public TransporterView(Integer id, BigDecimal rate, int maxWeight, String photoUrl, int version, String name, int count,
+			int age, String phone, String brand, String model, int carAge, String cityArrive, LocalDateTime dateArrive,
+			Status status) {
+		this.id = id;
+		this.rate = rate;
+		this.maxWeight = maxWeight;
+		this.photoUrl = photoUrl;
+		this.version = version;
+		this.name = name;
+		this.count = count;
+		this.age = age;
+		this.phone = phone;
+		this.brand = brand;
+		this.model = model;
+		this.carAge = carAge;
+		this.cityArrive = cityArrive;
+		this.dateArrive = dateArrive==null?null:dateArrive.format(DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+		this.status = status==null?null:status.name();
+	}
 
 	public Integer getId() {
 		return id;

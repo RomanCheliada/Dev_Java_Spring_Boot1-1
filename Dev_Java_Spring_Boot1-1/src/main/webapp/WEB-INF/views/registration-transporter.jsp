@@ -20,7 +20,7 @@
      
     </ul>
     <span class="navbar-text">
-    <a href="/signIn">Sign in</a>
+    <a href="/login">Sign in</a>
     </span>
   </div>
   

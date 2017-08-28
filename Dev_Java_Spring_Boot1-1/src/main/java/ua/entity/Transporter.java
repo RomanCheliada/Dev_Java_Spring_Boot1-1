@@ -44,6 +44,23 @@ public class Transporter extends AbstractEntityName{
 	private User user;
 	
 	
+	public Transporter(BigDecimal rate, int maxWeight, String photoUrl, int version, int count, int age,
+			String phone, Model model, int carAge, City cityArrive, LocalDateTime dateArrive, Status status) {
+		this.rate = rate;
+		this.maxWeight = maxWeight;
+		this.photoUrl = photoUrl;
+		this.version = version;
+		this.count = count;
+		this.age = age;
+		this.phone = phone;
+		this.model = model;
+		this.carAge = carAge;
+		this.cityArrive = cityArrive;
+		this.dateArrive = dateArrive;
+		this.status = status;
+	}
+	public Transporter() {
+	}
 	public User getUser() {
 		return user;
 	}

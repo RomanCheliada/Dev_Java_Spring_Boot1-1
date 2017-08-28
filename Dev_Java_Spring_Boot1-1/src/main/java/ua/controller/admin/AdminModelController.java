@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import ua.model.request.ModelRequest;
 import ua.service.ModelService;
 
 @Controller
@@ -26,13 +27,14 @@ public class AdminModelController {
 	}
 	
 	@ModelAttribute("model")
-	public ua.entity.Model getForm(){
-		return new ua.entity.Model();
+	public ModelRequest getForm(){
+		return new ModelRequest();
 	}
 	
 	@GetMapping
 	public String show(Model model){
 		model.addAttribute("models", service.findAll());
+		model.addAttribute("brands", service.findAllBrands());
 		return "model";
 	}
 	
@@ -43,7 +45,7 @@ public class AdminModelController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("model") ua.entity.Model model, SessionStatus status){
+	public String save(@ModelAttribute("model") ModelRequest model, SessionStatus status){
 		service.save(model);
 		return cancel(status);
 	}

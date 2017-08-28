@@ -19,13 +19,35 @@ public class Model extends AbstractEntityName{
 	
 	@OneToMany(mappedBy="model")
 	private List<Transporter> transporters = new ArrayList<>();
+	
 
-	public Model(String name) {
+	public Model(String name, Brand brand) {
 		super(name);
+		this.brand = brand;
 	}
 
 	public Model() {
 	}
 
+	public Brand getBrand() {
+		return brand;
+	}
 
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
+
+
+
+	public List<Transporter> getTransporters() {
+		return transporters;
+	}
+
+
+
+	public void setTransporters(List<Transporter> transporters) {
+		this.transporters = transporters;
+	}
+
+	
 }

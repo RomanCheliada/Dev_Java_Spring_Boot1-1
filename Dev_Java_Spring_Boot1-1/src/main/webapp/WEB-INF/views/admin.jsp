@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,9 +42,20 @@
         <a class="nav-link" href="/admin/transporter">Transporter</a>
       </li>
     </ul>
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
     <span class="navbar-text">
-      admin@gmail.com
+    	<form:form >
+ 			<a href="/" class="btn btn-outline-info btn-sm">User</a>
+ 		</form:form>
     </span>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+    <span class="navbar-text">
+    	<form:form action="/logout">
+ 			<button class="btn btn-outline-info btn-sm">Log out</button>
+ 		</form:form>
+    </span>
+    </sec:authorize>
   </div>
   
   

@@ -22,7 +22,7 @@ public class AdminTransporterController {
 	
 	@GetMapping
 	public String show(Model model){
-		
+		model.addAttribute("transporters", service.findAllView());
 		return "transporter";
 	}
 	

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,8 +43,19 @@
         <a class="nav-link" href="/admin/transporter">Transporter</a>
       </li>
     </ul>
+   <span class="navbar-text">
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
+    	<form:form >
+ 			<a href="/" class="btn btn-outline-info btn-sm">User</a>
+ 		</form:form>
+    </sec:authorize>
+    </span>
     <span class="navbar-text">
-      admin@gmail.com
+    <sec:authorize access="isAuthenticated()">
+    	<form:form action="/logout">
+ 			<button class="btn btn-outline-info btn-sm">Log out</button>
+ 		</form:form>
+    </sec:authorize>
     </span>
   </div>
   
@@ -65,7 +78,6 @@
 							<td>${owner.count}</td>
 							<td>${owner.address}</td>
 							<td class="text-center">
-								<a href="/admin/owner/update/${owner.id}" class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/owner/delete/${owner.id}" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>

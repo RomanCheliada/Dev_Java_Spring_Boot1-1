@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,18 @@
       </li>
     </ul>
     <span class="navbar-text">
-      admin@gmail.com
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
+    	<form:form >
+ 			<a href="/" class="btn btn-outline-info btn-sm">User</a>
+ 		</form:form>
+    </sec:authorize>
+    </span>
+    <span class="navbar-text">
+    <sec:authorize access="isAuthenticated()">
+    	<form:form action="/logout">
+ 			<button class="btn btn-outline-info btn-sm">Log out</button>
+ 		</form:form>
+    </sec:authorize>
     </span>
   </div>
   
