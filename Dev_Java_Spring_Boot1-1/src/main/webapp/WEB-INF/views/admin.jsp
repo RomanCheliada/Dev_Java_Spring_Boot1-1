@@ -43,18 +43,14 @@
       </li>
     </ul>
       <sec:authorize access="hasRole('ROLE_ADMIN')">
-    <span class="navbar-text">
     	<form:form >
- 			<a href="/" class="btn btn-outline-info btn-sm">User</a>
+ 			<a href="/" style="margin: 5px" class="btn btn-outline-info btn-sm">User</a>
  		</form:form>
-    </span>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
-    <span class="navbar-text">
     	<form:form action="/logout">
  			<button class="btn btn-outline-info btn-sm">Log out</button>
  		</form:form>
-    </span>
     </sec:authorize>
   </div>
   

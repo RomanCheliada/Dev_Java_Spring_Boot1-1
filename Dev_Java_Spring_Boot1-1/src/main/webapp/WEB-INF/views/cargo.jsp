@@ -43,20 +43,16 @@
         <a class="nav-link" href="/admin/transporter">Transporter</a>
       </li>
     </ul>
-    <span class="navbar-text">
       <sec:authorize access="hasRole('ROLE_ADMIN')">
     	<form:form >
- 			<a href="/" class="btn btn-outline-info btn-sm">User</a>
+ 			<a href="/" style="margin: 5px" class="btn btn-outline-info btn-sm">User</a>
  		</form:form>
     </sec:authorize>
-    </span>
-    <span class="navbar-text">
     <sec:authorize access="isAuthenticated()">
     	<form:form action="/logout">
  			<button class="btn btn-outline-info btn-sm">Log out</button>
  		</form:form>
     </sec:authorize>
-    </span>
   </div>
   
   

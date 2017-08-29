@@ -1,7 +1,15 @@
 package ua.service;
 
-import ua.entity.Owner;
+import java.util.List;
 
-public interface OwnerService extends CrudService<Owner, Integer>{
+import ua.model.view.OwnerView;
+
+public interface OwnerService{
+	
+	List<OwnerView> findAll();
+	
+	void delete(Integer id);
+	
+	OwnerView findOneView(Integer id);
 
 }

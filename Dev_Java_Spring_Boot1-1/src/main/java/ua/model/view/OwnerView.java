@@ -12,6 +12,15 @@ public class OwnerView {
 	private int count;
 	
 	private String address;
+	
+
+	public OwnerView(Integer id, String name, String phone, int count, String address) {
+		this.id = id;
+		this.name = name;
+		this.phone = phone;
+		this.count = count;
+		this.address = address;
+	}
 
 	public Integer getId() {
 		return id;

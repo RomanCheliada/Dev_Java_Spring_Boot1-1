@@ -31,20 +31,90 @@
       </li>
      
     </ul>
-    <span class="navbar-text">
+    
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+    	<form:form >
+ 			<a href="/admin" style="margin: 5px" class="btn btn-outline-info btn-sm">Admin</a>
+ 		</form:form>
+    </sec:authorize>
       <sec:authorize access="isAuthenticated()">
     	<form:form action="/logout">
  			<button class="btn btn-outline-info btn-sm">Log out</button>
  		</form:form>
     </sec:authorize>
-    </span>
   </div>
   
   
 </nav>
 
-<h2>Sorry...</h2>
-	<a>We are working on it.</a>
-	<a href="/">Back</a>
-</body>
+<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<form:form action="/add-order" method="POST" modelAttribute="cargo">
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Goods:</label>
+						<div class="col-10">
+							<form:select path="goods" class="form-control">
+								<form:option value="NONE">Select</form:option>
+								<form:options items="${goodss}"></form:options>
+							</form:select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Weight:</label>
+						<div class="col-10">
+							<form:input path="weight" class="form-control"/> 
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Height:</label>
+						<div class="col-10">
+							<form:input path="height" class="form-control"/> 
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Width:</label>
+						<div class="col-10">
+							<form:input path="width" class="form-control"/> 
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Length:</label>
+						<div class="col-10">
+							<form:input path="length" class="form-control"/> 
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">City from:</label>
+						<div class="col-10">
+							<form:select path="cityFrom" class="form-control">
+								<form:option value="">Select</form:option>
+								<form:options items="${cities}"></form:options>
+							</form:select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">City to:</label>
+						<div class="col-10">
+							<form:select path="cityTo" class="form-control">
+								<form:option value="">Select</form:option>
+								<form:options items="${cities}"></form:options>
+							</form:select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">Price:</label>
+						<div class="col-10">
+							<form:input path="price" class="form-control"/> 
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-12 offset-sm-12">
+        					<button type="submit" class="btn btn-primary btn-block btn-outline-success">Add</button>
+      					</div>
+					</div>
+				</form:form>
+			</div>
+		</div>
+	</div>
 </html>

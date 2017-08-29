@@ -20,8 +20,7 @@
 			<ul class="navbar-nav mr-auto">
 
 			</ul>
-			<span class="navbar-text"> <a href="/registration">Sign up</a>
-			</span>
+			<a href="/registration" class="btn btn-outline-info btn-sm">Sign up</a>
 		</div>
 
 

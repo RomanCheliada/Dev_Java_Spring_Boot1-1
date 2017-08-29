@@ -21,8 +21,7 @@
 			<ul class="navbar-nav mr-auto">
 
 			</ul>
-			<span class="navbar-text"> <a href="/login">Sign in</a>
-			</span>
+			<a href="/login" class="btn btn-outline-info btn-sm">Log in</a>
 		</div>
 
 

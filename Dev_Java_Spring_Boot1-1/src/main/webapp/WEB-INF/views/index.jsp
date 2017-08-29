@@ -39,18 +39,20 @@
      
     </ul>
     <sec:authorize access="isAnonymous()">
-    <span class="navbar-text">
     <a href="/registration" class="btn btn-outline-info btn-sm">Sign up</a>
     <a>or</a>
     <a href="/login" class="btn btn-outline-info btn-sm">Log in</a>
-    </span>
     </sec:authorize>
+     <sec:authorize access="isAuthenticated()">
+     <a  style="color: white; margin: 5px;">${message}</a>
+     </sec:authorize>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
     	<form:form >
- 			<a href="/admin" class="btn btn-outline-info btn-sm">Admin</a>
+ 			<a href="/admin" style="margin: 5px" class="btn btn-outline-info btn-sm ">Admin</a>
  		</form:form>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
+    
     	<form:form action="/logout">
  			<button class="btn btn-outline-info btn-sm">Log out</button>
  		</form:form>
@@ -59,9 +61,176 @@
   
   
 </nav>
-<h2 class="text-center">Add your order now!</h2>
-<a href="/add-order" class="btn btn-outline-success text-center btn-block btn-lg">Add order</a>
-	<h2>${message}</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<h2 class="text-center" style="margin: 15px">Add your order now!</h2>
+			<a href="/add-order" style="margin: 15px" class="btn btn-outline-success text-center btn-block btn-lg">Add order</a>
+			<sec:authorize access="isAuthenticated()">
+			<h2 style="margin: 15px">${message}</h2>
+			</sec:authorize>
+		</div>
+	</div>
+</div>
+
 	
+	<div class="container">
+		<div class="row">
+			<div class="col-1">
+			
+			</div>
+			<div class="col-2">
+				top 1
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-2">
+				top 2
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-2">
+				top 3
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-2">
+				top 4
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-2">
+				top 5
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-1">
+
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+				<div class="col-6">
+				top 1
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				top 2
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				top 3
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				top 4
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-4">
+				top 5
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Name</h4>
+						<p class="card-text">
+							<a>Age:</a><br>
+							<a>Car:</a><br>
+							<a>Rate:</a><br>
+						</p>
+						<a href="#" class="btn btn-outline-info">Read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
