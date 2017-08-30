@@ -31,7 +31,10 @@ public class UserAddOrderController {
 	}
 	
 	@GetMapping
-	public String show(Model model){
+	public String show(Model model, Principal principal){
+		if(principal!=null){
+			model.addAttribute("message",principal.getName());
+		}
 		model.addAttribute("cities", addOrderService.findAllCity());
 		model.addAttribute("goodss", addOrderService.findAllGoods());
 		return "add-order";

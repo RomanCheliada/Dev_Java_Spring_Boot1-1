@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Cargo;
-import ua.entity.Owner;
 import ua.model.view.CargoView;
 
 public interface CargoRepository extends JpaRepository<Cargo, Integer>{
@@ -20,13 +19,11 @@ public interface CargoRepository extends JpaRepository<Cargo, Integer>{
 	@Query("SELECT c.name FROM City c")
 	List<String> findAllCity();
 	
-	@Query("SELECT new ua.model.view.CargoView(c.id, g.name, c.weight, c.height, c.width, c.length, cFrom.name, cTo.name, c.price) FROM Cargo c JOIN c.goods g JOIN c.cityFrom cFrom JOIN c.cityTo cTo")
+	@Query("SELECT new ua.model.view.CargoView(c.id, g.name, c.weight, c.height, c.width, c.length, cFrom.name, cTo.name,o.name, c.price) FROM Cargo c JOIN c.owner o JOIN c.goods g JOIN c.cityFrom cFrom JOIN c.cityTo cTo")
 	List<CargoView> findAllView();
 
 	@Query("SELECT c FROM Cargo c JOIN FETCH c.cityTo cTo JOIN FETCH c.cityFrom cFrom JOIN FETCH c.goods g LEFT JOIN FETCH c.owner o WHERE c.id=?1")
 	Cargo findOneRequest(Integer id);
 	
-	@Query("SELECT o FROM Owner o JOIN o.user u WHERE o.name=?1")
-	Owner findPrincipalOwner(String name);
 	
 }

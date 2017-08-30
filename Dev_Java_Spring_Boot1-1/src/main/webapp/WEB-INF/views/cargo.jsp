@@ -132,6 +132,7 @@
 			<div class="col-12">
 				<table class="table table-bordered">
 					<tr>
+						<th class="text-center">Owner</th>
 						<th class="text-center">Goods</th>
 						<th class="text-center">Weight</th>
 						<th class="text-center">Height</th>
@@ -144,6 +145,7 @@
 					</tr>
 					<c:forEach var="cargo" items="${cargos}">
 						<tr>
+							<td>${cargo.owner}</td>
 							<td>${cargo.goods}</td>
 							<td>${cargo.weight}</td>
 							<td>${cargo.height}</td>
