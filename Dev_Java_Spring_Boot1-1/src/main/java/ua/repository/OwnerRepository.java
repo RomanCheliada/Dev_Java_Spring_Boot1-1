@@ -14,4 +14,7 @@ public interface OwnerRepository extends JpaNameRepository<Owner, Integer>{
 	
 	@Query("SELECT o FROM Owner o WHERE o.id=?1")
 	OwnerView findOneView(Integer id);
+	
+	@Query("SELECT o FROM Owner o JOIN o.user u WHERE u.email=?1")
+	Owner findOwner(String name);
 }

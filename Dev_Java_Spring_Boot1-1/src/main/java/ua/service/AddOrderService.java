@@ -1,5 +1,6 @@
 package ua.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import ua.model.request.CargoRequest;
@@ -10,6 +11,8 @@ public interface AddOrderService {
 
 	List<String> findAllCity();
 	
-	void save(CargoRequest request);
+	void save(CargoRequest request, Principal principal);
+	
+	
 
 }

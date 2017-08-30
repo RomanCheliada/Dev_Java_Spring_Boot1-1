@@ -4,26 +4,25 @@ import java.math.BigDecimal;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import ua.entity.Cargo;
 import ua.entity.Owner;
 import ua.model.request.CargoRequest;
 import ua.repository.CargoRepository;
 import ua.repository.OwnerRepository;
 import ua.service.AddOrderService;
-
+@Service
 public class AddOrderServiceImpl implements AddOrderService{
 	
 	private final CargoRepository repository;
-	
-	private final Principal principal;
 	
 	private final OwnerRepository ownerRepository;
 	
 
 
-	public AddOrderServiceImpl(CargoRepository repository, Principal principal, OwnerRepository ownerRepository) {
+	public AddOrderServiceImpl(CargoRepository repository,  OwnerRepository ownerRepository) {
 		this.repository = repository;
-		this.principal = principal;
 		this.ownerRepository = ownerRepository;
 	}
 
@@ -38,7 +37,7 @@ public class AddOrderServiceImpl implements AddOrderService{
 	}
 
 	@Override
-	public void save(CargoRequest request) {
+	public void save(CargoRequest request,Principal principal) {
 		Cargo cargo = new Cargo();
 		cargo.setCityFrom(request.getCityFrom());
 		cargo.setCityTo(request.getCityTo());
@@ -50,11 +49,9 @@ public class AddOrderServiceImpl implements AddOrderService{
 		cargo.setPrice(new BigDecimal(request.getPrice().replace(',', '.')));
 		cargo.setWeight(Integer.valueOf(request.getWeight()));
 		cargo.setWidth(Integer.valueOf(request.getWidth()));
-//		Owner owner = ownerRepository.findByName(principal.getName());
-		Owner owner = repository.findPrincipalOwner(principal.getName());
+		Owner owner = ownerRepository.findOwner(principal.getName());
 		cargo.setOwner(owner);
 		repository.save(cargo);
-		
 	}
 
 }

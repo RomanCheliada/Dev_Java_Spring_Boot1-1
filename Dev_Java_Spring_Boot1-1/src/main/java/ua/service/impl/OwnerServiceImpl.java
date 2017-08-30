@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import ua.entity.Owner;
 import ua.model.view.OwnerView;
 import ua.repository.OwnerRepository;
 import ua.service.OwnerService;
@@ -33,6 +34,12 @@ public class OwnerServiceImpl implements OwnerService{
 	@Override
 	public OwnerView findOneView(Integer id) {
 		return repositoriy.findOneView(id);
+	}
+
+
+	@Override
+	public Owner nameOwner(String name) {
+		return repositoriy.findOwner(name);
 	}
 
 	

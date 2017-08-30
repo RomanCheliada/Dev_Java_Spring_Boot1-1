@@ -1,5 +1,7 @@
 package ua.controller.user;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,21 +12,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import ua.model.request.CargoRequest;
-import ua.service.CargoService;
-
+import ua.service.AddOrderService;
 @Controller
 @RequestMapping("/add-order")
 @SessionAttributes("cargo")
 public class UserAddOrderController {
 	
-	private final CargoService service;
+	private final AddOrderService addOrderService;
 
 	
-	public UserAddOrderController(CargoService service) {
-		this.service = service;
+	public UserAddOrderController(AddOrderService addOrderService) {
+		this.addOrderService = addOrderService;
 	}
 
-	
 	@ModelAttribute("cargo")
 	public CargoRequest getForm(){
 		return new CargoRequest();
@@ -32,14 +32,14 @@ public class UserAddOrderController {
 	
 	@GetMapping
 	public String show(Model model){
-		model.addAttribute("cities", service.findAllCity());
-		model.addAttribute("goodss", service.findAllGoods());
+		model.addAttribute("cities", addOrderService.findAllCity());
+		model.addAttribute("goodss", addOrderService.findAllGoods());
 		return "add-order";
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("cargo") CargoRequest request,SessionStatus status){
-		service.save(request);
+	public String save(@ModelAttribute("cargo") CargoRequest request,SessionStatus status, Principal principal){
+		addOrderService.save(request, principal);
 		return cancel(status);
 	}
 
