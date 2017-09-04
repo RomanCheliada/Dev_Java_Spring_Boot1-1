@@ -1,23 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="bootstrap.jsp"></jsp:include>
-<title>${owner.name}</title>
+<title>Cargo</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="/">Easy Trans</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -55,7 +56,6 @@
  		</form:form>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
-    
     	<form:form action="/logout">
  			<button class="btn btn-outline-info btn-sm">Log out</button>
  		</form:form>
@@ -64,38 +64,33 @@
   
   
 </nav>
-
 <div class="container">
 	<div class="row">
-		<div class="col-6">
-			<h2>Name:</h2>
+		<div class="col-10">
+			<h3 style="margin:15px;">Owner ${cargo.owner}</h3> 
 		</div>
-		<div class="col-6">
-			<h2>${owner.name}</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-6">
-			<h2>Count:</h2>
-		</div>
-		<div class="col-6">
-			<h2>${owner.count}</h2>
+		<div class="col-2">
+			<a style="margin:15px;" href="/owner/${owner.id}" class="btn btn-outline-dark">More</a>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-6">
-			<h2>Phone:</h2>
+			<h4 style="margin-top:15px;" class="text-center">Goods:</h4><br>
+			<h4  class="text-center">Weight:</h4><br>
+			<h4  class="text-center">Length:</h4><br>
+			<h4  class="text-center">Width:</h4><br>
+			<h4  class="text-center">Height:</h4><br>
+			<h4  class="text-center">City (from - to):</h4><br>
+			<h4  class="text-center">Price:</h4><br>
 		</div>
 		<div class="col-6">
-			<h2>${owner.phone}</h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-6">
-			<h2>Address:</h2>
-		</div>
-		<div class="col-6">
-			<h2>${owner.address}</h2>
+			<h4 style="margin-top:15px;" class="text-center">${cargo.goods}</h4><br>
+			<h4 class="text-center">${cargo.weight} kg</h4><br>
+			<h4 class="text-center">${cargo.length} mm</h4><br>
+			<h4 class="text-center">${cargo.width} mm</h4><br>
+			<h4 class="text-center">${cargo.height} mm</h4><br>
+			<h4 class="text-center">${cargo.cityFrom} - ${cargo.cityTo}</h4><br>
+			<h4 class="text-center">${cargo.price} Uah</h4><br>
 		</div>
 	</div>
 </div>

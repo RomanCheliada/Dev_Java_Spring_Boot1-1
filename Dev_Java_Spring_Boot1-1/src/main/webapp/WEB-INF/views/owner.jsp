@@ -59,7 +59,8 @@
 <div class="container">
 	<div class="row">
 			<div class="col-12">
-				<table class="table table-bordered">
+				<table class="table table-hover">
+				<thead>
 					<tr>
 						<th class="text-center">Name</th>
 						<th class="text-center">Phone</th>
@@ -67,16 +68,20 @@
 						<th class="text-center">Address</th>
 						<th class="text-center">Options</th>
 					</tr>
+					</thead>
 					<c:forEach var="owner" items="${owners}">
+					<tbody>
 						<tr>
-							<td>${owner.name}</td>
-							<td>${owner.phone}</td>
-							<td>${owner.count}</td>
-							<td>${owner.address}</td>
+							<td class="text-center">${owner.name}</td>
+							<td class="text-center">${owner.phone}</td>
+							<td class="text-center">${owner.count}</td>
+							<td class="text-center">${owner.address}</td>
 							<td class="text-center">
+							<a  href="/owner/${owner.id}" class="btn btn-outline-dark btn-sm">Details</a>
 								<a href="/admin/owner/delete/${owner.id}" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
+						</tbody>
 					</c:forEach>
 				</table>
 			</div>

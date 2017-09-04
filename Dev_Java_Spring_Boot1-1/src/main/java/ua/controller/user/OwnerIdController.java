@@ -3,6 +3,7 @@ package ua.controller.user;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import ua.service.OwnerService;
@@ -19,7 +20,7 @@ public class OwnerIdController {
 	}
 	
 	@GetMapping
-	public String show(Integer id, Model model){
+	public String show(@PathVariable Integer id, Model model){
 		model.addAttribute("owner", service.findOneView(id));
 		return "ownerID";
 	}

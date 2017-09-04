@@ -1,26 +1,68 @@
 package ua.model.request;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import ua.entity.Brand;
 import ua.entity.Model;
+import ua.entity.Status;
 
 public class TransporterRequest {
 	
+	@NotBlank(message="Should not be empty!")
 	private String email;
 	
+	@NotBlank(message="Should not be empty!")
 	private String password;
 	
+	@NotBlank(message="Should not be empty!")
 	private String repeatPassword;
 	
+	@NotBlank(message="Should not be empty!")
 	private String name;
 	
+	private String count;
+	
+	@NotBlank(message="Should not be empty!")
 	private String maxWeight;
 	
+	@NotBlank(message="Should not be empty!")
 	private String age;
 	
+	@NotBlank(message="Should not be empty!")
 	private String phone;
 	
 	private Model model;
 	
+	private Brand brand;
+	
+	@NotBlank(message="Should not be empty!")
 	private String carAge;
+	
+	private Status status;
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Brand getBrand() {
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+	}
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
 
 	public String getEmail() {
 		return email;

@@ -60,7 +60,7 @@
 <div class="row">
 			<div class="col-12">
 				<form:form action="/admin/city" method="POST" modelAttribute="city">
-					<div class="form-group row">
+					<div class="form-group row" style="margin-top:5px;">
 						<label class="col-1 col-form-label">Name:</label>
 						<div class="col-9">
 							<form:input path="name" class="form-control"/>
@@ -70,24 +70,33 @@
         					<a href="/admin/city/cancel" class="btn btn-outline-warning ">Cancel</a>
       					</div>
 					</div>
+					<div class="form-group row">
+						<div class="col-11 ml-auto" style="color:red;">
+							<form:errors path="name"/>
+						</div>
+					</div>
 				</form:form>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<table class="table table-bordered">
+				<table class="table table-hover">
+				<thead>
 					<tr>
 						<th class="text-center">Name</th>
 						<th class="text-center">Options</th>
 					</tr>
+					</thead>
 					<c:forEach var="city" items="${citys}">
+					<tbody>
 						<tr>
-							<td>${city.name}</td>
+							<td class="text-center">${city.name}</td>
 							<td class="text-center">
 								<a href="/admin/city/update/${city.id}" class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/city/delete/${city.id}" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
+						</tbody>
 					</c:forEach>
 				</table>
 			</div>

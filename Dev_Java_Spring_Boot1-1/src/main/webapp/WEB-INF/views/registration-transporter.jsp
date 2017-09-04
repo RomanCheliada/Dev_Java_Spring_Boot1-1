@@ -36,16 +36,31 @@
 							<a class="breadcrumb-item active" href="/registration-transporter">Transporter</a>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="email"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-form-label col-2 text-center" for="email">Email:</label>
 						<div class="col-10">
 							<form:input path="email" id="email" class="form-control" />
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="password"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-form-label col-2 text-center" for="password">Password:</label>
 						<div class="col-10">
 							<form:password path="password" id="password" class="form-control" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="repeatPassword"/>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -56,10 +71,20 @@
 								class="form-control" />
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="name"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label text-center">Name:</label>
 						<div class="col-10">
 							<form:input path="name" class="form-control" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="age"/>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -68,12 +93,21 @@
 							<form:input path="age" class="form-control" />
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="phone"/>
+						</div>
+					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label text-center">Phone:</label>
 						<div class="col-10">
 							<form:input path="phone" class="form-control" placeholder="(012)-34-56-789"/>
 						</div>
-
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="model"/>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label text-center">Model:</label>
@@ -83,25 +117,33 @@
 								<form:options items="${models}"></form:options>
 							</form:select>
 						</div>
-
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="carAge"/>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label text-center">Year issue:</label>
 						<div class="col-10">
 							<form:input path="carAge" class="form-control"/>
 						</div>
-
+					</div>
+					<div class="row">
+						<div class="col-10 ml-auto" style="color:red;">
+							<form:errors path="maxWeight"/>
+						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label text-center">Max weight:</label>
 						<div class="col-10">
 							<form:input path="maxWeight" class="form-control"/>
 						</div>
-
 					</div>
 					<div class="form-group row">
 						<div class="col-12 offset-sm-12">
 							<button type="submit" class="btn btn-primary btn-block btn-outline-success">Register</button>
+							<a href="/" class="btn btn-warning btn-block btn-outline-warning">Cancel</a>
 						</div>
 					</div>
 				</form:form>

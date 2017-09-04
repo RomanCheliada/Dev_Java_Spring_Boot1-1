@@ -7,6 +7,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name="cargo")
 public class Cargo extends AbstractEntity{
@@ -14,12 +16,16 @@ public class Cargo extends AbstractEntity{
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Goods goods;
 	
+	@NotBlank(message="Should not be empty!")
 	private int weight;
 	
+	@NotBlank(message="Should not be empty!")
 	private int height;
 	
+	@NotBlank(message="Should not be empty!")
 	private int width;
 	
+	@NotBlank(message="Should not be empty!")
 	private int length;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -30,6 +36,7 @@ public class Cargo extends AbstractEntity{
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Owner owner;
 	
+	@NotBlank(message="Should not be empty!")
 	private BigDecimal price;
 
 	public Cargo(Goods goods, int weight, int height, int width, int length, City cityFrom, City cityTo,

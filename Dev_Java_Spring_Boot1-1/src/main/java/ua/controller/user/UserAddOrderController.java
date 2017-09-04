@@ -2,8 +2,11 @@ package ua.controller.user;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +44,8 @@ public class UserAddOrderController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("cargo") CargoRequest request,SessionStatus status, Principal principal){
+	public String save(@ModelAttribute("cargo") @Valid CargoRequest request,BindingResult br,SessionStatus status, Principal principal, Model model){
+		if(br.hasErrors()) return show(model, principal);
 		addOrderService.save(request, principal);
 		return cancel(status);
 	}

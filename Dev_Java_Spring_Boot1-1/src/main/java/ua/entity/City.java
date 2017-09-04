@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name="city")
 public class City extends AbstractEntityName{
@@ -14,9 +16,13 @@ public class City extends AbstractEntityName{
 	
 	@OneToMany(mappedBy="cityArrive")
 	private List<Transporter> transporters = new ArrayList<>();
+	
 	@OneToMany(mappedBy="cityFrom")
+	@NotBlank(message="Should not be empty!")
 	private List<Cargo> cargoFroms = new ArrayList<>();
+	
 	@OneToMany(mappedBy="cityTo")
+	@NotBlank(message="Should not be empty!")
 	private List<Cargo> cargoTo = new ArrayList<>();
 
 	public City(String name) {

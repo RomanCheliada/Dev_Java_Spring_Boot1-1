@@ -9,11 +9,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+
+
+
 @Entity
 @Table(name="model")
 public class Model extends AbstractEntityName{
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@NotBlank(message="Should not be empty!")
 	private Brand brand;
 
 	

@@ -18,5 +18,8 @@ public interface CargoService {
 	void delete(Integer id);
 
 	CargoRequest findOne(Integer id);
+	
+	CargoView findOneView(Integer id);
+	
 
 }

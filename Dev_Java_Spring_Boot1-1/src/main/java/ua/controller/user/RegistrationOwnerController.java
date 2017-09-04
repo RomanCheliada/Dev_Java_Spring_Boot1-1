@@ -1,6 +1,9 @@
 package ua.controller.user;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +36,8 @@ public class RegistrationOwnerController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("owner") OwnerRequest request){
+	public String save(@ModelAttribute("owner") @Valid OwnerRequest request, BindingResult br){
+		if(br.hasErrors()) return show();
 		service.save(request);
 		return "redirect:/login";
 	}

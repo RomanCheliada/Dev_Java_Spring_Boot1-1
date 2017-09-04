@@ -42,5 +42,13 @@ public class OwnerServiceImpl implements OwnerService{
 		return repositoriy.findOwner(name);
 	}
 
+
+	@Override
+	public OwnerView findOnePrincipalView(String name) {
+		return repositoriy.findOnePrincipalView(name);
+	}
+
+
+
 	
 }

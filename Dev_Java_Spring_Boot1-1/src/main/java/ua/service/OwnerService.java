@@ -13,6 +13,9 @@ public interface OwnerService{
 	
 	OwnerView findOneView(Integer id);
 	
+	OwnerView findOnePrincipalView(String name);
+	
 	Owner nameOwner(String name);
-
+	
+	
 }

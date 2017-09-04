@@ -1,5 +1,7 @@
 package ua.model.request;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import ua.entity.City;
 import ua.entity.Goods;
 import ua.entity.Owner;
@@ -10,12 +12,16 @@ public class CargoRequest {
 	
 	private Goods goods;
 	
+	@NotBlank(message="Should not be empty!")
 	private String weight;
 	
+	@NotBlank(message="Should not be empty!")
 	private String height;
 	
+	@NotBlank(message="Should not be empty!")
 	private String width;
 	
+	@NotBlank(message="Should not be empty!")
 	private String length;
 	
 	private City cityFrom;
@@ -24,6 +30,7 @@ public class CargoRequest {
 	
 	private Owner owner;
 	
+	@NotBlank(message="Should not be empty!")
 	private String price;
 
 	public Integer getId() {

@@ -41,11 +41,14 @@
     </ul>
     <sec:authorize access="isAnonymous()">
     <a href="/registration" class="btn btn-outline-info btn-sm">Sign up</a>
-    <a>or</a>
+    <a style="color:white; margin:5px;">or</a>
     <a href="/login" class="btn btn-outline-info btn-sm">Log in</a>
     </sec:authorize>
      <sec:authorize access="isAuthenticated()">
      <a  style="color: white; margin: 5px;">${message}</a>
+     </sec:authorize>
+     <sec:authorize access="isAuthenticated()">
+     <a href="/profile" style="margin: 5px" class="btn btn-outline-info btn-sm ">Profile</a>
      </sec:authorize>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
     	<form:form >
@@ -66,33 +69,38 @@
 	<div class="row">
 			<div class="col-12">
 				<table class="table table-hover table-inverse">
+				<thead>
 					<tr>
 						<th class="text-center">Owner</th>
 						<th class="text-center">Goods</th>
 						<th class="text-center">Weight</th>
-						<th class="text-center">Height</th>
-						<th class="text-center">Width</th>
-						<th class="text-center">Length</th>
+						<th class="text-center">Dimensions</th>
 						<th class="text-center">City from</th>
 						<th class="text-center">City to</th>
 						<th class="text-center">Price</th>
 						<th class="text-center">Options</th>
 					</tr>
+					</thead>
 					<c:forEach var="cargo" items="${cargos}">
+					<tbody>
 						<tr>
-							<td>${cargo.owner}</td>
-							<td>${cargo.goods}</td>
-							<td>${cargo.weight}</td>
-							<td>${cargo.height}</td>
-							<td>${cargo.width}</td>
-							<td>${cargo.length}</td>
-							<td>${cargo.cityFrom}</td>
-							<td>${cargo.cityTo}</td>
-							<td>${cargo.price}</td>
+							<td class="text-center">${cargo.owner}</td>
+							<td class="text-center">${cargo.goods}</td>
+							<td class="text-center">${cargo.weight} kg</td>
+							<td class="text-center">${cargo.length}*${cargo.width}*${cargo.height} mm</td>
+							<td class="text-center">${cargo.cityFrom}</td>
+							<td class="text-center">${cargo.cityTo}</td>
+							<td class="text-center">${cargo.price} Uah</td>
 							<td class="text-center">
-							
+							<sec:authorize access="isAuthenticated()">
+								<a href="/cargo/${cargo.id}"  class="btn btn-outline-light btn-sm">Details</a>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+								<a href="/login"  class="btn btn-outline-light btn-sm">Details</a>
+								</sec:authorize>
 							</td>
 						</tr>
+						</tbody>
 					</c:forEach>
 				</table>
 			</div>

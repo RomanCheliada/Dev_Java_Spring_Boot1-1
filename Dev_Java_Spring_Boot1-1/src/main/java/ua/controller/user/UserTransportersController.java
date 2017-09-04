@@ -25,7 +25,7 @@ public class UserTransportersController {
 		if(principal!=null){
 			model.addAttribute("message",principal.getName());
 		}
-		model.addAttribute("transporters", service.findAllView());
+		model.addAttribute("transporters", service.findAllIndexView());
 		return "allTransporters";
 	}
 

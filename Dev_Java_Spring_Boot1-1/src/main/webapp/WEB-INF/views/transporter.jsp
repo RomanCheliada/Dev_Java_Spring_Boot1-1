@@ -59,7 +59,8 @@
 <div class="container">
 	<div class="row">
 			<div class="col-12">
-				<table class="table table-bordered">
+				<table class="table table-hover">
+				<thead>
 					<tr>
 						<th class="text-center">Name</th>
 						<th class="text-center">Rate</th>
@@ -71,28 +72,28 @@
 						<th class="text-center">Model</th>
 						<th class="text-center">Car age</th>
 						<th class="text-center">City arrive</th>
-						<th class="text-center">Date arrive</th>
-						<th class="text-center">Status</th>
 						<th class="text-center">Options</th>
 					</tr>
+					</thead>
 					<c:forEach var="transporter" items="${transporters}">
+					<tbody>
 						<tr>
-							<td>${transporter.name}</td>
-							<td>${transporter.rate}</td>
-							<td>${transporter.maxWeight}</td>
-							<td>${transporter.count}</td>
-							<td>${transporter.age}</td>
-							<td>${transporter.phone}</td>
-							<td>${transporter.brand}</td>
-							<td>${transporter.model}</td>
-							<td>${transporter.carAge}</td>
-							<td>${transporter.cityArrive}</td>
-							<td>${transporter.dateArrive}</td>
-							<td>${transporter.status}</td>
+							<td class="text-center">${transporter.name}</td>
+							<td class="text-center">${transporter.rate}</td>
+							<td class="text-center">${transporter.maxWeight}</td>
+							<td class="text-center">${transporter.count}</td>
+							<td class="text-center">${transporter.age}</td>
+							<td class="text-center">${transporter.phone}</td>
+							<td class="text-center">${transporter.brand}</td>
+							<td class="text-center">${transporter.model}</td>
+							<td class="text-center">${transporter.carAge}</td>
+							<td class="text-center">${transporter.cityArrive}</td>
 							<td class="text-center">
-								<a href="/admin/transporter/delete/${transporter.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+							<a href="/transporter/${transporter.id}"  class="btn btn-outline-dark btn-sm">Details</a>
+								<a  href="/admin/transporter/delete/${transporter.id}" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
+						</tbody>
 					</c:forEach>
 				</table>
 			</div>

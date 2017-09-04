@@ -1,19 +1,38 @@
 package ua.model.request;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 public class OwnerRequest {
 	
+	@NotBlank(message="Should not be empty!")
 	private String email;
 	
+	@NotBlank(message="Should not be empty!")
 	private String password;
 	
+	@NotBlank(message="Should not be empty!")
 	private String repeatPassword;
 	
+	@NotBlank(message="Should not be empty!")
+	private String count;
+	
+	@NotBlank(message="Should not be empty!")
 	private String name;
 	
+	@NotBlank(message="Should not be empty!")
 	private String phone;
 	
+	@NotBlank(message="Should not be empty!")
 	private String address;
 	
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
 
 	public String getPassword() {
 		return password;

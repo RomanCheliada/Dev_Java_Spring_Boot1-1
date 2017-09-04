@@ -25,5 +25,9 @@ public interface CargoRepository extends JpaRepository<Cargo, Integer>{
 	@Query("SELECT c FROM Cargo c JOIN FETCH c.cityTo cTo JOIN FETCH c.cityFrom cFrom JOIN FETCH c.goods g LEFT JOIN FETCH c.owner o WHERE c.id=?1")
 	Cargo findOneRequest(Integer id);
 	
+	@Query("SELECT new ua.model.view.CargoView(c.id, g.name, c.weight, c.height, c.width, c.length, cFrom.name, cTo.name,o.name, c.price) FROM Cargo c JOIN c.owner o JOIN c.goods g JOIN c.cityFrom cFrom JOIN c.cityTo cTo WHERE c.id=?1")
+	CargoView findOneView(Integer id);
+
+	
 	
 }

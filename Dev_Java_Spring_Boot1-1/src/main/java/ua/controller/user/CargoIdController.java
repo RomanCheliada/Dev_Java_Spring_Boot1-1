@@ -8,25 +8,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import ua.service.TransporterService;
+import ua.service.CargoService;
 
 @Controller
-@RequestMapping("/transporter/{id}")
-public class TransporterIdController {
+@RequestMapping("/cargo/{id}")
+public class CargoIdController {
 	
-	private final TransporterService service;
-
-	public TransporterIdController(TransporterService service) {
+	private final CargoService service;
+	
+	public CargoIdController(CargoService service) {
 		this.service = service;
 	}
-	
+
+
 	@GetMapping
-	public String show(@PathVariable Integer id,Model model, Principal principal){
+	public String show(@PathVariable Integer id, Model model, Principal principal){
 		if(principal!=null){
 			model.addAttribute("message",principal.getName());
 		}
-		model.addAttribute("transporter", service.findOneView(id));
-		return "transporterID";
+		model.addAttribute("cargo",service.findOneView(id));
+//		model.addAttribute("owner",service.findOwnerView(id));
+		return "cargoID";
 	}
 
 }

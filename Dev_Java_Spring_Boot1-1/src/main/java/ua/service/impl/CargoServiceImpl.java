@@ -73,6 +73,12 @@ public class CargoServiceImpl implements CargoService{
 		repository.delete(id);
 	}
 
+	@Override
+	public CargoView findOneView(Integer id) {
+		return repository.findOneView(id);
+	}
+
+
 
 
 }

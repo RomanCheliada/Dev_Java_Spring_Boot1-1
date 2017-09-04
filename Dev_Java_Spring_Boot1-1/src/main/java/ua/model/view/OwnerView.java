@@ -22,6 +22,7 @@ public class OwnerView {
 		this.address = address;
 	}
 
+
 	public Integer getId() {
 		return id;
 	}

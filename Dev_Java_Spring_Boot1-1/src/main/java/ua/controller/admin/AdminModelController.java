@@ -1,8 +1,11 @@
 package ua.controller.admin;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +48,8 @@ public class AdminModelController {
 	}
 	
 	@PostMapping
-	public String save(@ModelAttribute("model") ModelRequest model, SessionStatus status){
+	public String save(@ModelAttribute("model") @Valid ModelRequest model, BindingResult br, SessionStatus status, Model model2){
+		if(br.hasErrors()) return show(model2);
 		service.save(model);
 		return cancel(status);
 	}

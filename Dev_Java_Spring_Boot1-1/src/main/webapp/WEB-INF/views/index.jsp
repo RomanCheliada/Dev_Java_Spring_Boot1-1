@@ -40,11 +40,14 @@
     </ul>
     <sec:authorize access="isAnonymous()">
     <a href="/registration" class="btn btn-outline-info btn-sm">Sign up</a>
-    <a>or</a>
+    <a style="color:white; margin:5px;">or</a>
     <a href="/login" class="btn btn-outline-info btn-sm">Log in</a>
     </sec:authorize>
      <sec:authorize access="isAuthenticated()">
      <a  style="color: white; margin: 5px;">${message}</a>
+     </sec:authorize>
+     <sec:authorize access="isAuthenticated()">
+     <a href="/profile" style="margin: 5px" class="btn btn-outline-info btn-sm ">Profile</a>
      </sec:authorize>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
     	<form:form >
@@ -63,6 +66,16 @@
 </nav>
 <div class="container">
 	<div class="row">
+	<sec:authorize access="isAnonymous()">
+		<div class="col-12">
+			<h2 class="text-center" style="margin: 15px">Add your order now!</h2>
+			<a href="/login" style="margin: 15px" class="btn btn-outline-success text-center btn-block btn-lg">Add order</a>
+			<sec:authorize access="isAuthenticated()">
+			<h2 style="margin: 15px">${message}</h2>
+			</sec:authorize>
+		</div>
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()">
 		<div class="col-12">
 			<h2 class="text-center" style="margin: 15px">Add your order now!</h2>
 			<a href="/add-order" style="margin: 15px" class="btn btn-outline-success text-center btn-block btn-lg">Add order</a>
@@ -70,6 +83,7 @@
 			<h2 style="margin: 15px">${message}</h2>
 			</sec:authorize>
 		</div>
+		</sec:authorize>
 	</div>
 </div>
 
@@ -85,8 +99,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -99,8 +113,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -113,8 +127,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -127,8 +141,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -141,8 +155,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -162,8 +176,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -176,8 +190,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -194,8 +208,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -208,8 +222,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
@@ -222,8 +236,8 @@
 					<div class="card-body">
 						<h4 class="card-title">Name</h4>
 						<p class="card-text">
-							<a>Age:</a><br>
-							<a>Car:</a><br>
+							<a>Count:</a><br>
+							<a>Max weight:</a><br>
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
