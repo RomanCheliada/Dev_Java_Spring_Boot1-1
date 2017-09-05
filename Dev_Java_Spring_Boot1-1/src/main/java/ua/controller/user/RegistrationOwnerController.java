@@ -41,5 +41,7 @@ public class RegistrationOwnerController {
 		service.save(request);
 		return "redirect:/login";
 	}
+	
+	
 
 }

@@ -10,11 +10,13 @@ import ua.service.BrandService;
 
 @Service
 public class BrandServiceImpl extends CrudServiceImpl<Brand, Integer> implements BrandService {
-
+	
 	@Autowired
 	public BrandServiceImpl(BrandRepository repository) {
 		super(repository);
 	}
+
+	
 
 	
 }

@@ -2,6 +2,8 @@ package ua.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 
@@ -26,6 +28,7 @@ public interface TransporterRepository extends JpaNameRepository<Transporter, In
 	@Query("SELECT new  ua.model.view.TransporterView(t.id, t.rate, t.maxWeight, t.photoUrl, t.version, t.name, t.count,t.age, t.phone, b.name, m.name, t.carAge, c.name, t.dateArrive,t.status) FROM Transporter t JOIN t.user u JOIN t.model m JOIN m.brand b JOIN t.cityArrive c WHERE u.email=?1 ")
 	TransporterView findOnePrincipalView(String name);
 
-	@Query("SELECT new ua.model.view.TransporterIndexView(t.id, t.rate, t.maxWeight, t.photoUrl, t.version, t.name,t.count) FROM Transporter t ")
-	List<TransporterIndexView> findAllIndexView();
+	@Query(value="SELECT new ua.model.view.TransporterIndexView(t.id, t.rate, t.maxWeight, t.photoUrl, t.version, t.name,t.count) FROM Transporter t ",
+			countQuery="SELECT count(t.id) FROM Transporter t")
+	Page<TransporterIndexView> findAllIndexView(Pageable pageable);
 }

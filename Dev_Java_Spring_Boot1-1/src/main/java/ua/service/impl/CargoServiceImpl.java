@@ -3,9 +3,12 @@ package ua.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Cargo;
+import ua.entity.Owner;
 import ua.model.request.CargoRequest;
 import ua.model.view.CargoView;
 import ua.repository.CargoRepository;
@@ -31,8 +34,8 @@ public class CargoServiceImpl implements CargoService{
 	}
 
 	@Override
-	public List<CargoView> findAllView() {
-		return repository.findAllView();
+	public Page<CargoView> findAllView(Pageable pageable) {
+		return repository.findAllView(pageable);
 	}
 
 	@Override
@@ -76,6 +79,11 @@ public class CargoServiceImpl implements CargoService{
 	@Override
 	public CargoView findOneView(Integer id) {
 		return repository.findOneView(id);
+	}
+
+	@Override
+	public Owner findOwnerView(Integer id) {
+		return repository.findOwnerView(id);
 	}
 
 

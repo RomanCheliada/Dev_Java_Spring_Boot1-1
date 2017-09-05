@@ -2,8 +2,11 @@ package ua.model.request;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import ua.validation.annotation.UniqueEmail;
+
 public class OwnerRequest {
 	
+	@UniqueEmail(message="User with this email was found on DB!")
 	@NotBlank(message="Should not be empty!")
 	private String email;
 	

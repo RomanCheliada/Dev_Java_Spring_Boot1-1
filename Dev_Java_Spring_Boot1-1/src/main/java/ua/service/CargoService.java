@@ -2,6 +2,10 @@ package ua.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import ua.entity.Owner;
 import ua.model.request.CargoRequest;
 import ua.model.view.CargoView;
 
@@ -11,7 +15,7 @@ public interface CargoService {
 
 	List<String> findAllCity();
 
-	List<CargoView> findAllView();
+	Page<CargoView> findAllView(Pageable pageable);
 
 	void save(CargoRequest request);
 
@@ -20,6 +24,8 @@ public interface CargoService {
 	CargoRequest findOne(Integer id);
 	
 	CargoView findOneView(Integer id);
+
+	Owner findOwnerView(Integer id);
 	
 
 }

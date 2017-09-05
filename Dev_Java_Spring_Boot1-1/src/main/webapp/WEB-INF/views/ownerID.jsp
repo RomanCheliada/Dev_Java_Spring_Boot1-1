@@ -67,34 +67,34 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-6">
+		<div style="margin-top:25px;" class="col-6 text-center">
 			<h2>Name:</h2>
 		</div>
-		<div class="col-6">
+		<div style="margin-top:25px;" class="col-6 text-center">
 			<h2>${owner.name}</h2>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-6">
+		<div style="margin-top:15px;" class="col-6 text-center">
 			<h2>Count:</h2>
 		</div>
-		<div class="col-6">
+		<div style="margin-top:15px;" class="col-6 text-center">
 			<h2>${owner.count}</h2>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-6">
+	<div  class="row">
+		<div style="margin-top:15px;" class="col-6 text-center">
 			<h2>Phone:</h2>
 		</div>
-		<div class="col-6">
+		<div style="margin-top:15px;" class="col-6 text-center">
 			<h2>${owner.phone}</h2>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-6">
+		<div style="margin-top:15px;" class="col-6 text-center">
 			<h2>Address:</h2>
 		</div>
-		<div class="col-6">
+		<div style="margin-top:15px;" class="col-6 text-center">
 			<h2>${owner.address}</h2>
 		</div>
 	</div>

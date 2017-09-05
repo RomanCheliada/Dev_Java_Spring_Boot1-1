@@ -1,13 +1,17 @@
 package ua.model.request;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 import ua.entity.Brand;
 import ua.entity.Model;
 import ua.entity.Status;
+import ua.validation.annotation.UniqueEmail;
 
 public class TransporterRequest {
 	
+	@UniqueEmail(message="User with this email was found on DB!")
 	@NotBlank(message="Should not be empty!")
 	private String email;
 	
@@ -31,6 +35,7 @@ public class TransporterRequest {
 	@NotBlank(message="Should not be empty!")
 	private String phone;
 	
+	@NotNull(message="Should not be empty!")
 	private Model model;
 	
 	private Brand brand;

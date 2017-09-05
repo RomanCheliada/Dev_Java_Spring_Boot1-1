@@ -2,6 +2,8 @@ package ua.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Transporter;
@@ -34,8 +36,8 @@ public class TransporterServiceImpl implements TransporterService {
 
 
 	@Override
-	public List<TransporterIndexView> findAllIndexView() {
-		return repository.findAllIndexView();
+	public Page<TransporterIndexView> findAllIndexView(Pageable pageable) {
+		return repository.findAllIndexView(pageable);
 	}
 
 

@@ -27,7 +27,7 @@ public class CargoIdController {
 			model.addAttribute("message",principal.getName());
 		}
 		model.addAttribute("cargo",service.findOneView(id));
-//		model.addAttribute("owner",service.findOwnerView(id));
+		model.addAttribute("owner",service.findOwnerView(id));
 		return "cargoID";
 	}
 

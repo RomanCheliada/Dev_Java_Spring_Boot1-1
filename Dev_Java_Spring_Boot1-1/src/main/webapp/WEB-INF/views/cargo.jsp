@@ -3,6 +3,7 @@
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <%@ taglib prefix="custom" uri="/WEB-INF/tags/implicit.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,7 +77,7 @@
 						<th class="text-center">Options</th>
 					</tr>
 					</thead>
-					<c:forEach var="cargo" items="${cargos}">
+					<c:forEach var="cargo" items="${cargos.content}">
 					<tbody>
 						<tr>
 							<td class="text-center">${cargo.owner}</td>
@@ -96,6 +97,11 @@
 						</tbody>
 					</c:forEach>
 				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-xs-12 text-center">
+				<custom:pageable page="${cargos}"/>
 			</div>
 		</div>
 	</div>

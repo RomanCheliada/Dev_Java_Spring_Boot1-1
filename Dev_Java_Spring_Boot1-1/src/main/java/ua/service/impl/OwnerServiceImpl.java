@@ -1,7 +1,7 @@
 package ua.service.impl;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Owner;
@@ -20,8 +20,8 @@ public class OwnerServiceImpl implements OwnerService{
 
 
 	@Override
-	public List<OwnerView> findAll() {
-		return repositoriy.findAllView();
+	public Page<OwnerView> findAll(Pageable pageable) {
+		return repositoriy.findAllView(pageable);
 	}
 
 

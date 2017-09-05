@@ -1,5 +1,7 @@
 package ua.model.request;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 import ua.entity.City;
@@ -10,6 +12,7 @@ public class CargoRequest {
 	
 	private Integer id;
 	
+	@NotNull(message="Should not be empty!")
 	private Goods goods;
 	
 	@NotBlank(message="Should not be empty!")
@@ -24,8 +27,10 @@ public class CargoRequest {
 	@NotBlank(message="Should not be empty!")
 	private String length;
 	
+	@NotNull(message="Should not be empty!")
 	private City cityFrom;
 	
+	@NotNull(message="Should not be empty!")
 	private City cityTo;
 	
 	private Owner owner;

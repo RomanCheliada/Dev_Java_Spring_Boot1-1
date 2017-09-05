@@ -1,5 +1,7 @@
 package ua.model.request;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 import ua.entity.Brand;
@@ -11,6 +13,7 @@ public class ModelRequest {
 	@NotBlank(message="Should not be empty!")
 	private String name;
 	
+	@NotNull(message="Should not be empty!")
 	private Brand brand;
 
 	public Integer getId() {
