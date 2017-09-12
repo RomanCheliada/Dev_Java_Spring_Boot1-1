@@ -36,8 +36,16 @@ public class ProfileController {
 			model.addAttribute("transporter", tService.findOnePrincipalView(principal.getName()));
 		}else if(authority.equals("ROLE_OWNER")){
 			model.addAttribute("owner", oService.findOnePrincipalView(principal.getName()));
+			model.addAttribute("cargos",oService.findAllCargosPrincipalUser(principal.getName()));
 		}
 		return "profile";
 	}
+	
+	
 
+	@GetMapping("/changeStatus")
+	public String changeStatus(Principal principal){
+		tService.changeStatus(principal.getName());
+		return "redirect:/profile";
+	}
 }

@@ -16,7 +16,6 @@ public class OwnerRequest {
 	@NotBlank(message="Should not be empty!")
 	private String repeatPassword;
 	
-	@NotBlank(message="Should not be empty!")
 	private String count;
 	
 	@NotBlank(message="Should not be empty!")

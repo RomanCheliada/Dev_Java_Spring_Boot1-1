@@ -7,8 +7,10 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ua.model.filter.TransporterFilter;
 import ua.service.TransporterService;
 
 @Controller
@@ -21,14 +23,28 @@ public class UserTransportersController {
 		this.service = service;
 	}
 
-
+	@ModelAttribute("transporterFilter")
+	 	public TransporterFilter getFilter() {
+	 		return new TransporterFilter();
+	 	}
+	
 	@GetMapping
-	public String show(Model model, Principal principal, @PageableDefault Pageable pageable){
+	public String show(Model model, Principal principal, @ModelAttribute("transporterFilter") TransporterFilter filter, @PageableDefault Pageable pageable){
+		model.addAttribute("brands", service.findAllBrands());
+		model.addAttribute("models", service.findAllModels());
+		model.addAttribute("citys", service.findAllCitys());
+		model.addAttribute("transporters", service.findAll(filter, pageable));
 		if(principal!=null){
 			model.addAttribute("message",principal.getName());
 		}
-		model.addAttribute("transporters", service.findAllIndexView(pageable));
 		return "allTransporters";
 	}
-
+	
+	
+	@GetMapping("/clean")
+	public String clean(){
+		return "redirect:/transporters";
+		
+	}
+	
 }

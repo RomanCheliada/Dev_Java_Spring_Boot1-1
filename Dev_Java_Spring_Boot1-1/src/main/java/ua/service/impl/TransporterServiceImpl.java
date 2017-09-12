@@ -6,24 +6,27 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import ua.entity.Status;
 import ua.entity.Transporter;
+import ua.model.filter.TransporterFilter;
 import ua.model.request.TransporterRequest;
 import ua.model.view.TransporterIndexView;
 import ua.model.view.TransporterView;
 import ua.repository.TransporterRepository;
+import ua.repository.TransporterViewRepository;
 import ua.service.TransporterService;
 
 @Service
 public class TransporterServiceImpl implements TransporterService {
-	
-
 
 	private final TransporterRepository repository;
-
-	public TransporterServiceImpl(TransporterRepository repository) {
+	
+	private final TransporterViewRepository viewRepository;
+	
+	public TransporterServiceImpl(TransporterRepository repository,TransporterViewRepository viewRepository) {
 		this.repository = repository;
+		this.viewRepository = viewRepository;
 	}
-
 
 	@Override
 	public List<String> findAllModels() {
@@ -73,9 +76,35 @@ public class TransporterServiceImpl implements TransporterService {
 
 
 	@Override
-	public Object findOnePrincipalView(String name) {
+	public TransporterView findOnePrincipalView(String name) {
 		return repository.findOnePrincipalView(name);
 	}
+
+
+	@Override
+	public void changeStatus(String email) {
+		Transporter transporter = repository.findOnePrincipal(email);
+		if(transporter.getStatus().equals((Status.FREE))) transporter.setStatus(Status.IN_THE_WAY);
+		else if(transporter.getStatus().equals((Status.IN_THE_WAY))) transporter.setStatus(Status.FREE);
+		repository.save(transporter);
+	}
+
+	@Override
+	public List<String> findAllBrands() {
+		return repository.findAllBrands();
+	}
+
+	@Override
+	public List<String> findAllCitys() {
+		return repository.findAllCitys();
+	}
+
+	@Override
+	public Page<TransporterIndexView> findAll(TransporterFilter filter, Pageable pageable) {
+		return viewRepository.findAll(filter, pageable);
+	}
+
+
 
 
 	

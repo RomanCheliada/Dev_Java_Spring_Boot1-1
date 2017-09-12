@@ -28,6 +28,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/transporters">Transporters</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/owners">Owners</a>
+      </li>
       <sec:authorize access="isAuthenticated()" >
       <li class="nav-item">
         <a class="nav-link" href="/add-order">Add order</a>

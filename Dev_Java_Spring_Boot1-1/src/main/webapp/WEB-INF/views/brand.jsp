@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="bootstrap.jsp"></jsp:include>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <title>Brand</title>
 </head>
 <body>
@@ -59,16 +62,17 @@
 </nav>
 <div class="container">
 		<div class="row">
-			<div class="col-12">
+ 			<div class="col-12">
 				<form:form action="/admin/brand" method="POST" modelAttribute="brand" >
+					<custom:hiddenInputs excludeParams="name"/>
 					<div class="form-group row" style="margin-top:5px;" >
 						<label  class="col-1 col-form-label">Name:</label>
 						<div class="col-9">
 							<form:input path="name" class="form-control"/>
 						</div>
 						<div class="col-2 offset-sm-2">
-        					<button type="submit" class="btn btn-outline-success ">Save</button>
-        					<a href="/admin/brand/cancel" class="btn btn-outline-warning ">Cancel</a>
+        					<button type="submit" class="btn btn-outline-success">Save</button>
+        					<a href="/admin/brand/cancel<custom:allParams/>" class="btn btn-outline-warning ">Cancel</a>
       					</div>
 					</div>
 					<div class="form-group row">
@@ -79,8 +83,28 @@
 				</form:form>
 			</div>
 		</div>
-		
-		
+		<div class="row">
+		<div class="col-8">
+ 				<form:form modelAttribute="filter" action="/admin/brand" method="GET">
+ 					<div class="form-group row">
+ 						<div class="col-12">
+ 							<form:input path="search" class="form-control" placeholder="search"/>
+ 						</div>
+ 					</div>
+ 				</form:form>
+ 			</div>
+ 			<div class="col-2 text-center">
+ 			<button class="dropdown-toggle btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Sort <span class="caret"></span>
+ 							</button>
+ 							<div class="dropdown-menu">
+ 								<custom:sort innerHtml="Name asc" paramValue="name"/>
+ 								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+ 							</div>
+ 			</div>
+ 			<div class="col-2 text-center">
+ 			<custom:size posibleSizes="1,2,5,10" size="${brands.size}" />
+ 			</div>
+  		</div>
 		
 		
 		<div class="row">
@@ -92,13 +116,13 @@
 						<th class="text-center ">Options</th>
 					</tr>
 					</thead>
-					<c:forEach var="brand" items="${brands}">
+					<c:forEach var="brand" items="${brands.content}">
 					<tbody>
 						<tr>
 							<td class="text-center">${brand.name}</td>
 							<td class="text-center">
-								<a href="/admin/brand/update/${brand.id}" class="btn btn-outline-warning btn-sm">Update</a>
-								<a href="/admin/brand/delete/${brand.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/brand/update/${brand.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
+								<a href="/admin/brand/delete/${brand.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 						</tbody>
@@ -106,7 +130,11 @@
 				</table>
 			</div>
 		</div>
-		
+		<div class="row">
+ 			<div class="col-12">
+ 				<custom:pageable page="${brands}"/>
+ 			</div>
+  		</div>
 	</div>
 </body>
 </html>

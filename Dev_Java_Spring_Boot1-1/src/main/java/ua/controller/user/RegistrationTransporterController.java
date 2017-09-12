@@ -40,6 +40,7 @@ public class RegistrationTransporterController {
 	@PostMapping
 	public String save(@ModelAttribute("transporter") @Valid TransporterRequest request, BindingResult br, Model model) {
 		if(br.hasErrors()) return show(model);
+		
 	service.save(request);
 	return "redirect:/login";
 	}

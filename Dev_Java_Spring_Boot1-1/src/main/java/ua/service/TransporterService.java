@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.model.filter.TransporterFilter;
 import ua.model.request.TransporterRequest;
 import ua.model.view.TransporterIndexView;
 import ua.model.view.TransporterView;
@@ -13,6 +14,10 @@ import ua.model.view.TransporterView;
 public interface TransporterService{
 	
 	List<String> findAllModels();
+	
+	List<String> findAllBrands();
+	
+	List<String> findAllCitys();
 	
 	void delete(Integer id);
 	
@@ -24,7 +29,12 @@ public interface TransporterService{
 	
 	TransporterView findOneView(Integer id);
 
-	Object findOnePrincipalView(String name);
+	TransporterView findOnePrincipalView(String name);
+
+	void changeStatus(String email);
+	
+	Page<TransporterIndexView> findAll(TransporterFilter filter, Pageable pageable);
+
 	
 
 

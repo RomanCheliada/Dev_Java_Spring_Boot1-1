@@ -2,11 +2,14 @@ package ua.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -43,6 +46,11 @@ public class Transporter extends AbstractEntityName{
 	@OneToOne
 	private User user;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Cargo cargo;	
+	
+	@ManyToMany(mappedBy="transporters")
+	private List<Cargo> cargos = new ArrayList<>();
 	
 	public Transporter(BigDecimal rate, int maxWeight, String photoUrl, int version, int count, int age,
 			String phone, Model model, int carAge, City cityArrive, LocalDateTime dateArrive, Status status) {
@@ -60,6 +68,20 @@ public class Transporter extends AbstractEntityName{
 		this.status = status;
 	}
 	public Transporter() {
+	}
+	
+	
+	public List<Cargo> getCargos() {
+		return cargos;
+	}
+	public void setCargos(List<Cargo> cargos) {
+		this.cargos = cargos;
+	}
+	public Cargo getCargo() {
+		return cargo;
+	}
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
 	}
 	public User getUser() {
 		return user;

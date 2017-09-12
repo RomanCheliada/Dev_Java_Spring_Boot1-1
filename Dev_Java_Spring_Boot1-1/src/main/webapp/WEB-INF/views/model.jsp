@@ -3,11 +3,15 @@
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+    <%@ taglib prefix="custom" uri="/WEB-INF/tags/implicit.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <jsp:include page="bootstrap.jsp"></jsp:include>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <title>Model</title>
 </head>
 <body>
@@ -88,12 +92,14 @@
 					<div class="form-group row">
 						<div class="col-2 offset-sm-2">
         					<button type="submit" class="btn btn-outline-success">Save</button>
-        					<a href="/admin/model/cancel" class="btn btn-outline-warning ">Cancel</a>
+        					<a href="/admin/model/cancel<custom:allParams/>" class="btn btn-outline-warning ">Cancel</a>
       					</div>
       					</div>
 				</form:form>
+				
 			</div>
 		</div>
+		
 		<div class="row">
 			<div class="col-12">
 				<table class="table table-hover">
@@ -104,14 +110,14 @@
 						<th class="text-center">Options</th>
 					</tr>
 					</thead>
-					<c:forEach var="model" items="${models}">
+					<c:forEach var="model" items="${models.content}">
 					<tbody>
 						<tr>
 							<td class="text-center">${model.name}</td>
-							<td class="text-center"> ${model.brand}</td>
+							<td class="text-center"> ${model.brand.name}</td>
 							<td class="text-center">
-								<a href="/admin/model/update/${model.id}" class="btn btn-outline-warning btn-sm">Update</a>
-								<a href="/admin/model/delete/${model.id}" class="btn btn-outline-danger btn-sm">Delete</a>
+								<a href="/admin/model/update/${model.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
+								<a href="/admin/model/delete/${model.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 						</tr>
 						</tbody>
@@ -119,6 +125,11 @@
 				</table>
 			</div>
 		</div>
+		<div class="row">
+ 			<div class="col-12">
+ 				<custom:pageable page="${models}"/>
+ 			</div>
+  		</div>
 	</div>
 </body>
 </html>

@@ -5,22 +5,26 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Cargo;
 import ua.entity.Owner;
+import ua.model.filter.SimpleFilter;
 import ua.model.request.CargoRequest;
 import ua.model.view.CargoView;
 import ua.repository.CargoRepository;
 import ua.service.CargoService;
 
 @Service
-public class CargoServiceImpl implements CargoService{
+public class CargoServiceImpl extends CrudServiceImpl<Cargo, Integer> implements CargoService{
 
 	private final CargoRepository repository;
 	
 	public CargoServiceImpl(CargoRepository repository) {
+		super(repository);
 		this.repository = repository;
+		
 	}
 
 	@Override
@@ -34,7 +38,7 @@ public class CargoServiceImpl implements CargoService{
 	}
 
 	@Override
-	public Page<CargoView> findAllView(Pageable pageable) {
+	public Page<CargoView> findAllView(Pageable pageable, SimpleFilter filter) {
 		return repository.findAllView(pageable);
 	}
 
@@ -55,7 +59,7 @@ public class CargoServiceImpl implements CargoService{
 	}
 
 	@Override
-	public CargoRequest findOne(Integer id) {
+	public CargoRequest findOneRequest(Integer id) {
 		Cargo cargo = repository.findOneRequest(id);
 		CargoRequest request = new CargoRequest();
 		request.setCityFrom(cargo.getCityFrom());
@@ -87,6 +91,12 @@ public class CargoServiceImpl implements CargoService{
 	}
 
 
+	private Specification<CargoView> filter(SimpleFilter filter){
+		 		return (root, query, cb) -> {
+		 			if(filter.getSearch().isEmpty()) return null;
+		 			return cb.like(root.get("name"), filter.getSearch()+"%");
+		 		};
+		 	}
 
 
 }

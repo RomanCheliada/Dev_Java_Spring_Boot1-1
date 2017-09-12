@@ -26,6 +26,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/transporters">Transporters</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/owners">Owners</a>
+      </li>
       <sec:authorize access="isAuthenticated()" >
       <li class="nav-item">
         <a class="nav-link" href="/add-order">Add order</a>
@@ -181,9 +184,9 @@
 							<a>Rate:</a><br>
 						</p>
 						<a href="#" class="btn btn-outline-info">Read more</a>
+						</div>
 					</div>
 				</div>
-			</div>
 			<div class="col-6">
 				top 2
 				<div class="card">

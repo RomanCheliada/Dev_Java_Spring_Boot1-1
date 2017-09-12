@@ -2,19 +2,23 @@ package ua.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Model;
 import ua.model.request.ModelRequest;
+import ua.model.view.ModelView;
 import ua.repository.ModelRepository;
 import ua.service.ModelService;
 @Service
-public class ModelServiceImpl implements ModelService{
+public class ModelServiceImpl extends CrudServiceImpl<Model, Integer> implements ModelService{
 
 	
 	private final ModelRepository repository;
 
 	public ModelServiceImpl(ModelRepository repository) {
+		super(repository);
 		this.repository = repository;
 	}
 
@@ -38,12 +42,12 @@ public class ModelServiceImpl implements ModelService{
 	}
 
 	@Override
-	public List<Model> findAll() {
-		return repository.findAll();
+	public List<ModelView> findAllView() {
+		return repository.findAllView();
 	}
 
 	@Override
-	public ModelRequest findOne(Integer id) {
+	public ModelRequest findOneRequest(Integer id) {
 		Model model = repository.findOneRequest(id);
 		ModelRequest request = new ModelRequest();
 		request.setBrand(model.getBrand());
@@ -54,7 +58,12 @@ public class ModelServiceImpl implements ModelService{
 		return request;
 	}
 
-	
+	@Override
+	public Page<Model> findAllView(Pageable pageable) {
+		return repository.findAll(pageable);
+	}
+
+
 	
 
 }

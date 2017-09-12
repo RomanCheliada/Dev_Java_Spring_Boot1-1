@@ -27,6 +27,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/transporters">Transporters</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/owners">Owners</a>
+      </li>
       <sec:authorize access="isAuthenticated()" >
       <li class="nav-item">
         <a class="nav-link" href="/add-order">Add order</a>
@@ -74,6 +77,11 @@
 		</div>
 	</div>
 	<div class="row">
+	<div class="col-12">
+        <h4 class="text-center"><a  style="color: green;">${addTakeJob}</a></h4>
+        </div>
+     </div>
+	<div class="row">
 		<div class="col-6">
 			<h4 style="margin-top:15px;" class="text-center">Goods:</h4><br>
 			<h4  class="text-center">Weight:</h4><br>
@@ -91,6 +99,14 @@
 			<h4 class="text-center">${cargo.height} mm</h4><br>
 			<h4 class="text-center">${cargo.cityFrom} - ${cargo.cityTo}</h4><br>
 			<h4 class="text-center">${cargo.price} Uah</h4><br>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-12 offset-sm-12">
+			<sec:authorize access="hasRole('ROLE_TRANSPORTER')">
+        		<a href="/cargo/${cargo.id}/takeJob" class="btn btn-primary btn-block btn-outline-success">Take a job</a>
+        	</sec:authorize>
+        	
 		</div>
 	</div>
 </div>

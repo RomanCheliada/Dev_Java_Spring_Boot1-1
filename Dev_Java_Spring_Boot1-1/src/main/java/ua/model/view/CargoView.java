@@ -22,9 +22,11 @@ public class CargoView {
 	
 	private String owner;
 	
+	private String transporter;
+	
 	private String price;
 	
-	public CargoView(Integer id, String goods, int weight, int height, int width, int length, String cityFrom, String cityTo,String owner, BigDecimal price) {
+	public CargoView(Integer id, String goods, int weight, int height, int width, int length, String cityFrom, String cityTo,String owner,String transporter, BigDecimal price) {
 		this.id = id;
 		this.goods = goods;
 		this.weight = weight;
@@ -34,10 +36,18 @@ public class CargoView {
 		this.cityFrom = cityFrom;
 		this.cityTo = cityTo;
 		this.owner = owner;
+		this.transporter = transporter;
 		this.price = String.valueOf(price);
 		
 	}
 
+	public String getTransporter() {
+		return transporter;
+	}
+
+	public void setTransporter(String transporter) {
+		this.transporter = transporter;
+	}
 
 	public Integer getId() {
 		return id;

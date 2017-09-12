@@ -56,7 +56,7 @@
 					<div class="form-group row">
 						<label class="col-form-label col-2 text-center" for="password">Password:</label>
 						<div class="col-10">
-							<form:password path="password" id="password" class="form-control" />
+							<form:password path="password" id="password" name="password" class="form-control"  />
 						</div>
 					</div>
 					<div class="row">
@@ -68,7 +68,7 @@
 						<label class="col-form-label col-2 text-center" for="repeatpassword">Repeat
 							password:</label>
 						<div class="col-10">
-							<form:password path="repeatPassword" id="repeatpassword"
+							<form:password path="repeatPassword" name="repeatPassword" id="repeatpassword"
 								class="form-control" />
 						</div>
 					</div>

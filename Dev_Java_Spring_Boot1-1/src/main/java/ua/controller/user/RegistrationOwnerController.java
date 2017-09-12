@@ -42,6 +42,4 @@ public class RegistrationOwnerController {
 		return "redirect:/login";
 	}
 	
-	
-
 }

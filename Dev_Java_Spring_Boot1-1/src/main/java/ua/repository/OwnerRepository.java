@@ -1,10 +1,13 @@
 package ua.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Owner;
+import ua.model.view.CargoView;
 import ua.model.view.OwnerView;
 
 public interface OwnerRepository extends JpaNameRepository<Owner, Integer>{
@@ -21,6 +24,9 @@ public interface OwnerRepository extends JpaNameRepository<Owner, Integer>{
 	
 	@Query("SELECT o FROM Owner o JOIN o.user u WHERE u.email=?1")
 	Owner findOwner(String name);
+
+	@Query("SELECT new ua.model.view.CargoView(c.id, g.name, c.weight, c.height, c.width, c.length, cFrom.name, cTo.name,o.name,t.name, c.price) FROM Cargo c JOIN  c.goods g JOIN c.cityFrom cFrom LEFT JOIN c.transporter t JOIN  c.cityTo cTo JOIN c.owner o  JOIN o.user u WHERE u.email=?1")
+	List<CargoView> findAllCargosPrincipalUser(String name);
 	
 	
 }

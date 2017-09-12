@@ -1,11 +1,17 @@
 package ua.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -13,6 +19,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name="cargo")
 public class Cargo extends AbstractEntity{
 	
+	@NotNull(message="Should not be empty!")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Goods goods;
 	
@@ -28,13 +35,24 @@ public class Cargo extends AbstractEntity{
 	@NotBlank(message="Should not be empty!")
 	private int length;
 	
+	@NotNull(message="Should not be empty!")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private City cityFrom;
 	
+	@NotNull(message="Should not be empty!")
 	@ManyToOne(fetch=FetchType.LAZY)
 	private City cityTo;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Owner owner;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Transporter transporter;
+	
+	@ManyToMany
+	@JoinTable(name="cargo_transporters", joinColumns=@JoinColumn(name="id_cargo"), inverseJoinColumns=@JoinColumn(name="id_transporter"))
+	private List<Transporter> transporters = new ArrayList<>();
+	
 	
 	@NotBlank(message="Should not be empty!")
 	private BigDecimal price;
@@ -54,6 +72,30 @@ public class Cargo extends AbstractEntity{
 	
 
 	public Cargo() {
+	}
+
+
+
+	public Transporter getTransporter() {
+		return transporter;
+	}
+
+
+
+	public void setTransporter(Transporter transporter) {
+		this.transporter = transporter;
+	}
+
+
+
+	public List<Transporter> getTransporters() {
+		return transporters;
+	}
+
+
+
+	public void setTransporters(List<Transporter> transporters) {
+		this.transporters = transporters;
 	}
 
 
