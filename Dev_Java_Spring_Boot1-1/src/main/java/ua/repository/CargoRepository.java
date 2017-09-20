@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import ua.entity.Cargo;
 import ua.entity.Owner;
-import ua.entity.Transporter;
 import ua.model.view.CargoView;
 
 public interface CargoRepository extends JpaRepository<Cargo, Integer>, JpaSpecificationExecutor<CargoView>{
@@ -24,7 +23,7 @@ public interface CargoRepository extends JpaRepository<Cargo, Integer>, JpaSpeci
 	@Query("SELECT c.name FROM City c")
 	List<String> findAllCity();
 	
-	@Query(value="SELECT new ua.model.view.CargoView(c.id, g.name, c.weight, c.height, c.width, c.length, cFrom.name, cTo.name,o.name,t.name, c.price) FROM Cargo c LEFT JOIN c.transporter t JOIN c.owner o JOIN c.goods g JOIN c.cityFrom cFrom JOIN c.cityTo cTo",
+	@Query(value="SELECT new ua.model.view.CargoView(c.id, g.name, c.weight, c.height, c.width, c.length, cFrom.name, cTo.name,o.name,t.name, c.price) FROM Cargo c LEFT JOIN c.transporter t JOIN c.owner o JOIN c.goods g JOIN c.cityFrom cFrom JOIN c.cityTo cTo ",
 			countQuery="SELECT count(c.id) FROM Cargo c JOIN c.owner o JOIN c.goods g JOIN c.cityFrom cFrom JOIN c.cityTo cTo")
 	Page<CargoView> findAllView( Pageable pageable);
 

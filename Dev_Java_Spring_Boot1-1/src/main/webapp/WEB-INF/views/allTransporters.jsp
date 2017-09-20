@@ -111,7 +111,10 @@
 				<div class="form-group row">
 					<div class="col-8 ml-auto mr-auto">
 						<label>City arrive</label>
-						<form:select class="form-control-sm" path="cityId" items="${citys }"></form:select>
+						<form:select class="form-control-sm" path="cityId">
+							<form:option value="NONE">All</form:option>
+							<form:options items="${citys}"/>
+						</form:select>
 					</div>
 				</div>
 				<div class="form-group row">

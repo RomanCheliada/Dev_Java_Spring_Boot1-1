@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class TransporterFilter {
 	
-	private static final Pattern INT_PATTERN = Pattern.compile("[0-9]{1,10}^$");
+	private static final Pattern INT_PATTERN = Pattern.compile("^[0-9]{1,10}$");
 	
 	private static final Pattern DECIMAL_PATTERN = Pattern.compile("^([0-9]{1,18}\\.[0-9]{0,2})|([0-9]{1,18}\\,[0-9]{0,2})|([0-9]{1,18})$");
 	
@@ -30,7 +30,7 @@ public class TransporterFilter {
 	
 	private List<String> brandIds = new ArrayList<>();
 	
-	private Integer cityId;
+	private String  cityId;
 	
 
 	public String getMinRate() {
@@ -121,11 +121,11 @@ public class TransporterFilter {
 		this.brandIds = brandlIds;
 	}
 
-	public Integer getCityId() {
+	public String getCityId() {
 		return cityId;
 	}
 
-	public void setCityId(Integer cityId) {
+	public void setCityId(String cityId) {
 		this.cityId = cityId;
 	}
 	

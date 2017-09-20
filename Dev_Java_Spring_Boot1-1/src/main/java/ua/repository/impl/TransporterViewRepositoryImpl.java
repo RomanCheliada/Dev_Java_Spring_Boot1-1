@@ -144,9 +144,8 @@ public class TransporterViewRepositoryImpl implements TransporterViewRepository{
 		}
 		
 		void findByCitys(){
-			if(filter.getCityId()!=0){
+			if(!filter.getCityId().isEmpty()){
 				Join<Transporter, City> cityJoin = root.join(Transporter_.cityArrive);
-				predicates.add(cityJoin.get(City_.name).in(filter.getCityId()));
 			}
 		}
 		
@@ -161,7 +160,7 @@ public class TransporterViewRepositoryImpl implements TransporterViewRepository{
 			filterByMaxAge();
 			findByBrandId();
 			findByModelId();
-			findByCitys();
+//			findByCitys();
 			return predicates.isEmpty() ? null : cb.and(predicates.stream().toArray(Predicate[]::new));
 		}
 	}
