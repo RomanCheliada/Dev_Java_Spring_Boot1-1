@@ -36,6 +36,8 @@ public interface CargoService extends CrudService<Cargo, Integer>{
 	void confirm(Integer cargoId, Integer transporterId);
 
 	Page<CargoView> findAll(Pageable pageable, CargoFilter filter);
+
+	void deleteFromList(Integer cargoId, Integer transporterId);
 	
 
 }

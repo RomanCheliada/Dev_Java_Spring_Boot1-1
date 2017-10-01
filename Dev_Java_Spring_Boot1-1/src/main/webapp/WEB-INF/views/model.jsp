@@ -62,7 +62,27 @@
 </nav>
 <div class="container">
 <div class="row">
-			<div class="col-12">
+            <div class="col-2">
+            	<form:form action="/admin/model" method="GET" modelAttribute="modelFilter">
+            		<div class="form-group row">
+            			<form:input path="name" class="form-control form-control-sm" placeholder="Name"/>
+            		</div>
+            		<div class="form-group row">
+            			<label>Brand </label>
+						<form:select class="form-control-sm" path="brands">
+							<form:option value="">All</form:option>
+							<form:options items="${brands}"/>
+						</form:select>
+            		</div>
+            		<div class="form-group row">
+ 						<div class="col-10 ml-auto">
+         					<button type="submit" class="btn btn-outline-success btn-sm">Search</button>
+         					<a href="/admin/model/clean<custom:allParams/>" class="btn btn-outline-success btn-sm">Clean</a>
+       					</div>
+       			</div>
+            	</form:form>
+            </div>
+			<div class="col-10">
 				<form:form action="/admin/model" method="POST" modelAttribute="model">
 					<div class="form-group row" style="margin-top:5px;" >
 						<label class="col-2 col-form-label">Name:</label>
@@ -90,10 +110,21 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-2 offset-sm-2">
+						<div class="col-3 offset-sm-3">
         					<button type="submit" class="btn btn-outline-success">Save</button>
         					<a href="/admin/model/cancel<custom:allParams/>" class="btn btn-outline-warning ">Cancel</a>
       					</div>
+      					<div class="col-2 text-center">
+ 			<button class="dropdown-toggle btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">Sort <span class="caret"></span>
+ 							</button>
+ 							<div class="dropdown-menu">
+ 								<custom:sort innerHtml="Name asc" paramValue="name"/>
+ 								<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
+ 							</div>
+ 			</div>
+ 			<div class="col-2 text-center">
+ 			<custom:size posibleSizes="1,2,5,10" size="${models.size}" />
+ 			</div>
       					</div>
 				</form:form>
 				
@@ -114,7 +145,7 @@
 					<tbody>
 						<tr>
 							<td class="text-center">${model.name}</td>
-							<td class="text-center"> ${model.brand.name}</td>
+							<td class="text-center"> ${model.brand}</td>
 							<td class="text-center">
 								<a href="/admin/model/update/${model.id}<custom:allParams/>" class="btn btn-outline-warning btn-sm">Update</a>
 								<a href="/admin/model/delete/${model.id}<custom:allParams/>" class="btn btn-outline-danger btn-sm">Delete</a>

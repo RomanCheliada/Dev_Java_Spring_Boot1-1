@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.Model;
+import ua.model.filter.ModelFilter;
 import ua.model.request.ModelRequest;
 import ua.model.view.ModelView;
 
@@ -23,6 +24,8 @@ public interface ModelService extends CrudService<Model, Integer> {
 	void save(ModelRequest request);
 
 	Page<Model> findAllView(Pageable pageable);
+
+	Page<ModelView> findAll(Pageable pageable, ModelFilter filter);
 
 	
 }

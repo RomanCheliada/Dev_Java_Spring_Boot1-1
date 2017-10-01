@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import ua.service.CargoService;
 import ua.service.OwnerService;
 import ua.service.TransporterService;
 
@@ -19,11 +20,13 @@ public class ProfileController {
 	
 	private final OwnerService oService;
 	
-
+	private final CargoService cService;
 	
-	public ProfileController(TransporterService tService, OwnerService oService) {
+	
+	public ProfileController(TransporterService tService, OwnerService oService, CargoService cService) {
 		this.tService = tService;
 		this.oService = oService;
+		this.cService = cService;
 	}
 
 

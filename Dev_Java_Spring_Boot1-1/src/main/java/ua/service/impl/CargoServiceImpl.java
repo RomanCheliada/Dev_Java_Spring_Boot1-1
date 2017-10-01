@@ -124,6 +124,13 @@ public class CargoServiceImpl extends CrudServiceImpl<Cargo, Integer> implements
 		return viewRepository.findAll(filter, pageable);
 	}
 
+	@Override
+	public void deleteFromList(Integer cargoId, Integer transporterId) {
+		Transporter transporter = trRepository.findOne(transporterId);
+		Cargo cargo = repository.findOne(cargoId);
+		cargo.getTransporters().remove(transporter);
+	}
+
 
 
 

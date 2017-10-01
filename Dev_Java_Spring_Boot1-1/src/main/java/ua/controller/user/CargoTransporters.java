@@ -24,8 +24,13 @@ public class CargoTransporters {
 	
 	@GetMapping("/cargo/transporters/{cargoId}/{transporterId}")
 	public String confirm(@PathVariable Integer cargoId,@PathVariable Integer transporterId){
-		System.out.println(cargoId+" "+transporterId);
 		cService.confirm(cargoId,transporterId);
 		return "redirect:/profile";
+	}
+	
+	@GetMapping("/cargo/transporters/{cargoId}/{transporterId}/delete")
+	public String delete (@PathVariable Integer cargoId,@PathVariable Integer transporterId){
+		cService.deleteFromList(cargoId,transporterId);
+		return "redirect:/cargo/transporters/{cargoId}/{transporterId}";
 	}
 }

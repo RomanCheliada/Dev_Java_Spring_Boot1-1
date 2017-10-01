@@ -7,19 +7,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Model;
+import ua.model.filter.ModelFilter;
 import ua.model.request.ModelRequest;
 import ua.model.view.ModelView;
 import ua.repository.ModelRepository;
+import ua.repository.ModelViewRepository;
 import ua.service.ModelService;
 @Service
 public class ModelServiceImpl extends CrudServiceImpl<Model, Integer> implements ModelService{
 
 	
 	private final ModelRepository repository;
+	
+	private final ModelViewRepository viewRepository;
 
-	public ModelServiceImpl(ModelRepository repository) {
+	public ModelServiceImpl(ModelRepository repository,ModelViewRepository viewRepository) {
 		super(repository);
 		this.repository = repository;
+		this.viewRepository = viewRepository;
 	}
 
 	@Override
@@ -61,6 +66,11 @@ public class ModelServiceImpl extends CrudServiceImpl<Model, Integer> implements
 	@Override
 	public Page<Model> findAllView(Pageable pageable) {
 		return repository.findAll(pageable);
+	}
+
+	@Override
+	public Page<ModelView> findAll(Pageable pageable, ModelFilter filter) {
+		return viewRepository.findAll(pageable,filter);
 	}
 
 

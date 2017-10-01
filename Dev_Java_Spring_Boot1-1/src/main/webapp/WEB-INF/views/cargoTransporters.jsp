@@ -88,6 +88,7 @@
 						<td class="text-center">${transporter.count}</td>
 							<td class="text-center">
 								<a href="/cargo/transporters/${id}/${transporter.id}" class="btn btn-outline-success btn-sm">Confirm</a>
+								<a href="/cargo/transporters/${id}/${transporter.id}/delete" class="btn btn-outline-danger btn-sm">Delete</a>
 							</td>
 					</tr>
 				</c:forEach>
