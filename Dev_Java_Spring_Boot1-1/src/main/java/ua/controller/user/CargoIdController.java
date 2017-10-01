@@ -33,12 +33,12 @@ public class CargoIdController {
 		model.addAttribute("owner",service.findOwnerView(id));
 		return "cargoID";
 	}
-//	
-//	@GetMapping("/takeJob")
-//	public String takeJob(@PathVariable Integer id, Principal principal,Model model){
-//		tService.takeJob(id,principal.getName());
-//		model.addAttribute("addTakeJob", "You have been added to the list!");
-//		return show(id, model, principal);
-//	}
+	
+	@GetMapping("/takeJob")
+	public String takeJob(@PathVariable Integer id, Principal principal,Model model){
+		tService.takeJob(id,principal.getName());
+		model.addAttribute("addTakeJob", "You have been added to the list!");
+		return show(id, model, principal);
+	}
 
 }

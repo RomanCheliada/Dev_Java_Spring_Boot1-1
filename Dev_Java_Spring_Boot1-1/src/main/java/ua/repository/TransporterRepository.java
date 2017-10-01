@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
-
+import ua.entity.Cargo;
 import ua.entity.Transporter;
 import ua.model.view.TransporterIndexView;
 import ua.model.view.TransporterView;
@@ -37,4 +37,10 @@ public interface TransporterRepository extends JpaNameRepository<Transporter, In
 	@Query(value="SELECT new ua.model.view.TransporterIndexView(t.id, t.rate, t.maxWeight, t.photoUrl, t.version, t.name,t.count) FROM Transporter t ",
 			countQuery="SELECT count(t.id) FROM Transporter t")
 	Page<TransporterIndexView> findAllIndexView(Pageable pageable);
+
+	@Query("SELECT t FROM Transporter t JOIN t.user u WHERE u.email=?1")
+	Transporter findByEmail(String email);
+
+	@Query("SELECT c FROM Transporter t JOIN t.cargo c JOIN FETCH c.goods g JOIN FETCH c.cityFrom cFrom JOIN FETCH c.cityTo cTo JOIN t.user u WHERE u.email=?1")
+	Cargo findCurrentCargo(String name);
 }

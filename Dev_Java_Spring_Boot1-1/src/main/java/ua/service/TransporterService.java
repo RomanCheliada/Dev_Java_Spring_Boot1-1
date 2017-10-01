@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import ua.entity.Cargo;
 import ua.model.filter.TransporterFilter;
 import ua.model.request.TransporterRequest;
 import ua.model.view.TransporterIndexView;
@@ -34,6 +35,10 @@ public interface TransporterService{
 	void changeStatus(String email);
 	
 	Page<TransporterIndexView> findAll(TransporterFilter filter, Pageable pageable);
+	
+	void takeJob(Integer id, String email);
+
+	Cargo findCurrentCargo(String name);
 
 	
 

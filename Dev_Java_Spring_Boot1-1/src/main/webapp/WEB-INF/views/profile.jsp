@@ -104,6 +104,20 @@
 			</c:choose>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-12">
+		<table class="table">
+			<tr>
+				<td class="text-center"><h4>Current cargo: </h4></td>
+				<td class="text-center"><h4>${transporter_cargo.goods.name}</h4></td>
+				<td class="text-center"><h4>${transporter_cargo.cityFrom.name}</h4></td>
+				<td class="text-center"><h4>-</h4></td>
+				<td class="text-center"><h4>${transporter_cargo.cityTo.name}</h4></td>
+				<td class="text-center"><h4>${transporter_cargo.price} uah</h4></td>
+			</tr>
+		</table>
+		</div>
+	</div> 
 </div>
 </sec:authorize>
 <sec:authorize access="hasRole('ROLE_OWNER')">
@@ -137,6 +151,7 @@
 						<th class="text-center">City to</th>
 						<th class="text-center">Price</th>
 						<th class="text-center">Transporter</th>
+						<th class="text-center">Options</th>
 					</tr>
 					</thead>
 				<c:forEach var="cargo" items="${cargos}">
@@ -151,7 +166,11 @@
 							<td class="text-center">${cargo.cityTo}</td>
 							<td class="text-center">${cargo.price}</td>
 							<td class="text-center">${cargo.transporter}</td>
+							<td class="text-center">
+								<a href="/cargo/transporters/${cargo.id }"  class="btn btn-outline-warning btn-sm">Transporters</a>
+							</td>
 						</tr>
+						
 					</tbody>	
 				</c:forEach>
 			</table>

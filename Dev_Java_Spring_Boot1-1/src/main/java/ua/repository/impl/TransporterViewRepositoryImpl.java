@@ -48,17 +48,17 @@ public class TransporterViewRepositoryImpl implements TransporterViewRepository{
 		if(predicate!=null) cq.where(predicate);
 		cq.orderBy(toOrders(pageable.getSort(), root, cb));
 		List<TransporterIndexView> content = em.createQuery(cq)
-			.setFirstResult(pageable.getPageNumber())
+			.setFirstResult(pageable.getPageNumber()*pageable.getPageSize())
 			.setMaxResults(pageable.getPageSize())
 			.getResultList();
 		CriteriaBuilder cbCount = em.getCriteriaBuilder();
 		CriteriaQuery<Long> cqCount = cb.createQuery(Long.class);
-		Root<Transporter> rootCount = cq.from(Transporter.class);
-		cqCount.select(cb.count(root));
+		Root<Transporter> rootCount = cqCount.from(Transporter.class);
+		cqCount.select(cbCount.count(rootCount));
 		PredicateBuilder countBuilder = new PredicateBuilder(filter, rootCount, cbCount);
 		Predicate countPredicate = countBuilder.toPredicate();
-		if(countPredicate!=null) cq.where(countPredicate);
-		return PageableExecutionUtils.getPage(content, pageable, ()->em.createQuery(cqCount).getSingleResult());
+		if(countPredicate!=null) cqCount.where(countPredicate);
+		return PageableExecutionUtils.getPage(content, pageable, ()->em.createQuery(cqCount).getSingleResult()); 
 	}
 	
 	private static class PredicateBuilder {
@@ -146,6 +146,7 @@ public class TransporterViewRepositoryImpl implements TransporterViewRepository{
 		void findByCitys(){
 			if(!filter.getCityId().isEmpty()){
 				Join<Transporter, City> cityJoin = root.join(Transporter_.cityArrive);
+				predicates.add(cityJoin.get(City_.name).in(filter.getCityId()));
 			}
 		}
 		
@@ -160,7 +161,7 @@ public class TransporterViewRepositoryImpl implements TransporterViewRepository{
 			filterByMaxAge();
 			findByBrandId();
 			findByModelId();
-//			findByCitys();
+			findByCitys();
 			return predicates.isEmpty() ? null : cb.and(predicates.stream().toArray(Predicate[]::new));
 		}
 	}

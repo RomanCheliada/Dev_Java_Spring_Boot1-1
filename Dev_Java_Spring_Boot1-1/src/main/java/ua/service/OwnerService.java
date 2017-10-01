@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.Owner;
+import ua.model.filter.OwnerFilter;
 import ua.model.view.CargoView;
 import ua.model.view.OwnerView;
 
@@ -24,6 +25,8 @@ public interface OwnerService{
 	List<CargoView> findAllCargosPrincipalUser(String name);
 
 	Page<OwnerView> findAllView(Pageable pageable);
+
+	Page<OwnerView> findAll(Pageable pageable, OwnerFilter filter);
 	
 	
 }

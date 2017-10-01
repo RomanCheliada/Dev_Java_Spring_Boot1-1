@@ -56,6 +56,14 @@ public class Cargo extends AbstractEntity{
 	
 	@NotBlank(message="Should not be empty!")
 	private BigDecimal price;
+	
+//	private boolean hasTransporter;
+//	
+//	@PrePersist
+//	@PreUpdate
+//	public void check(){
+//		hasTransporter=(transporter!=null);
+//	}
 
 	public Cargo(Goods goods, int weight, int height, int width, int length, City cityFrom, City cityTo,
 			BigDecimal price) {
@@ -73,7 +81,6 @@ public class Cargo extends AbstractEntity{
 
 	public Cargo() {
 	}
-
 
 
 	public Transporter getTransporter() {

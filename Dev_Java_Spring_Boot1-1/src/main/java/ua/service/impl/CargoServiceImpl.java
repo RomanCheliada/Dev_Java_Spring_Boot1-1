@@ -5,15 +5,18 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Cargo;
 import ua.entity.Owner;
+import ua.entity.Transporter;
+import ua.model.filter.CargoFilter;
 import ua.model.filter.SimpleFilter;
 import ua.model.request.CargoRequest;
 import ua.model.view.CargoView;
 import ua.repository.CargoRepository;
+import ua.repository.CargoViewRepository;
+import ua.repository.TransporterRepository;
 import ua.service.CargoService;
 
 @Service
@@ -21,10 +24,15 @@ public class CargoServiceImpl extends CrudServiceImpl<Cargo, Integer> implements
 
 	private final CargoRepository repository;
 	
-	public CargoServiceImpl(CargoRepository repository) {
+	private final TransporterRepository trRepository;
+	
+	private final CargoViewRepository viewRepository;
+	
+	public CargoServiceImpl(CargoRepository repository, TransporterRepository trRepository, CargoViewRepository viewRepository) {
 		super(repository);
 		this.repository = repository;
-		
+		this.trRepository = trRepository;
+		this.viewRepository = viewRepository;
 	}
 
 	@Override
@@ -90,13 +98,34 @@ public class CargoServiceImpl extends CrudServiceImpl<Cargo, Integer> implements
 		return repository.findOwnerView(id);
 	}
 
+	@Override
+	public List<Transporter> findListTransporters(Integer id) {
+		Cargo cargo=repository.findOne(id);
+		List<Transporter> transporters = cargo.getTransporters();
+		return transporters;
+	}
 
-	private Specification<CargoView> filter(SimpleFilter filter){
-		 		return (root, query, cb) -> {
-		 			if(filter.getSearch().isEmpty()) return null;
-		 			return cb.like(root.get("name"), filter.getSearch()+"%");
-		 		};
-		 	}
+	@Override
+	public void confirm(Integer cargoId, Integer transporterId) {
+		Transporter transporter = trRepository.findOne(transporterId);
+		Cargo cargo = repository.findOne(cargoId);
+		cargo.setTransporter(transporter);
+		transporter.setCargo(cargo);
+		transporter.getCargos().clear();
+		cargo.getTransporters().clear();
+		trRepository.save(transporter);
+		repository.save(cargo);
+		
+		
+	}
+
+	@Override
+	public Page<CargoView> findAll(Pageable pageable, CargoFilter filter) {
+		return viewRepository.findAll(filter, pageable);
+	}
+
+
+
 
 
 }

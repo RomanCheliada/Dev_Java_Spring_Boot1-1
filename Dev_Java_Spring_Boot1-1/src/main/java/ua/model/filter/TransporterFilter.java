@@ -30,7 +30,7 @@ public class TransporterFilter {
 	
 	private List<String> brandIds = new ArrayList<>();
 	
-	private String  cityId;
+	private String  cityId = "";
 	
 
 	public String getMinRate() {

@@ -6,12 +6,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import ua.entity.Cargo;
 import ua.entity.Status;
 import ua.entity.Transporter;
 import ua.model.filter.TransporterFilter;
 import ua.model.request.TransporterRequest;
 import ua.model.view.TransporterIndexView;
 import ua.model.view.TransporterView;
+import ua.repository.CargoRepository;
 import ua.repository.TransporterRepository;
 import ua.repository.TransporterViewRepository;
 import ua.service.TransporterService;
@@ -23,9 +25,12 @@ public class TransporterServiceImpl implements TransporterService {
 	
 	private final TransporterViewRepository viewRepository;
 	
-	public TransporterServiceImpl(TransporterRepository repository,TransporterViewRepository viewRepository) {
+	private final CargoRepository cargoRepository;
+	
+	public TransporterServiceImpl(TransporterRepository repository,TransporterViewRepository viewRepository,CargoRepository cargoRepository) {
 		this.repository = repository;
 		this.viewRepository = viewRepository;
+		this.cargoRepository = cargoRepository;
 	}
 
 	@Override
@@ -102,6 +107,20 @@ public class TransporterServiceImpl implements TransporterService {
 	@Override
 	public Page<TransporterIndexView> findAll(TransporterFilter filter, Pageable pageable) {
 		return viewRepository.findAll(filter, pageable);
+	}
+
+	@Override
+	public void takeJob(Integer id, String email) {
+		Transporter transporter = repository.findOnePrincipal(email);
+		Cargo cargo = cargoRepository.findOne(id);
+		cargo.getTransporters().add(transporter);
+		cargoRepository.save(cargo);
+		
+	}
+
+	@Override
+	public Cargo findCurrentCargo(String name) {
+		return repository.findCurrentCargo(name);
 	}
 
 

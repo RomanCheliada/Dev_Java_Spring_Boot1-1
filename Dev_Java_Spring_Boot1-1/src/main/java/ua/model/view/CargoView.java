@@ -2,6 +2,11 @@ package ua.model.view;
 
 import java.math.BigDecimal;
 
+import ua.entity.City;
+import ua.entity.Goods;
+import ua.entity.Owner;
+import ua.entity.Transporter;
+
 public class CargoView {
 	
 	private Integer id;
@@ -37,6 +42,21 @@ public class CargoView {
 		this.cityTo = cityTo;
 		this.owner = owner;
 		this.transporter = transporter;
+		this.price = String.valueOf(price);
+		
+	}
+	
+	public CargoView(Integer id, Goods goods, int weight, int height, int width, int length, City cityFrom, City cityTo,Owner owner,Transporter transporter, BigDecimal price) {
+		this.id = id;
+		this.goods = goods.getName();
+		this.weight = weight;
+		this.height = height;
+		this.width = width;
+		this.length = length;
+		this.cityFrom = cityFrom.getName();
+		this.cityTo = cityTo.getName();
+		this.owner = owner.getName();
+		this.transporter = transporter.getName();
 		this.price = String.valueOf(price);
 		
 	}

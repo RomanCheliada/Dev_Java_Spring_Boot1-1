@@ -3,6 +3,8 @@ package ua.controller.user;
 import java.security.Principal;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,9 +44,27 @@ public class UserTransportersController {
 	
 	
 	@GetMapping("/clean")
-	public String clean(){
-		return "redirect:/transporters";
+	public String clean(@PageableDefault Pageable pageable,@ModelAttribute("transporterFilter") TransporterFilter filter){
+		return "redirect:/transporters"+buildParams(pageable,filter);
 		
 	}
 	
+	
+	private String buildParams(Pageable pageable, TransporterFilter filter) {
+ 		StringBuilder buffer = new StringBuilder();
+ 		buffer.append("?page=");
+ 		buffer.append(String.valueOf(pageable.getPageNumber()+1));
+ 		buffer.append("&size=");
+ 		buffer.append(String.valueOf(pageable.getPageSize()));
+ 		if(pageable.getSort()!=null){
+ 			buffer.append("&sort=");
+ 			Sort sort = pageable.getSort();
+ 			sort.forEach((order)->{
+ 				buffer.append(order.getProperty());
+ 				if(order.getDirection()!=Direction.ASC)
+ 				buffer.append(",desc");
+ 			});
+ 		}
+ 		return buffer.toString();
+  	}
 }
